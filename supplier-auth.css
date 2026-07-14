@@ -380,6 +380,85 @@ button {
   transform: scale(1);
 }
 
+/* ================== O-AUTHORISATION & FEDERATED LOGIN STYLES ================== */
+.oauth-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 16px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.oauth-divider::before,
+.oauth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.oauth-divider span {
+  padding: 0 12px;
+}
+
+.oauth-buttons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.btn-oauth:hover {
+  border-color: #D3C2F7;
+  background: #F8F6FD;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(159, 32, 137, 0.08);
+}
+
+.btn-oauth.google {
+  border-color: #E2E8F0;
+}
+
+.btn-oauth.whatsapp {
+  border-color: #BCEAD5;
+  background: #F2FBF7;
+  color: #038D63;
+}
+
+.btn-oauth.whatsapp:hover {
+  background: #E4F7EE;
+}
+
+.btn-oauth.digilocker {
+  border-color: #D3CEFF;
+  background: #F5F3FF;
+  color: #3C29B7;
+}
+
+.btn-oauth.digilocker:hover {
+  background: #EBE8FF;
+}
+
 .jwt-modal-header {
   background: linear-gradient(90deg, #3A1C30, #580A46);
   color: #FFFFFF;

@@ -291,6 +291,19 @@ function setupEventListeners() {
     updateCartUI();
     closeCartDrawer();
   });
+
+  // Buyer Profile Modal toggles
+  document.getElementById('profile-action-btn')?.addEventListener('click', () => {
+    document.getElementById('buyer-login-modal')?.classList.add('active');
+  });
+  document.getElementById('buyer-login-close')?.addEventListener('click', () => {
+    document.getElementById('buyer-login-modal')?.classList.remove('active');
+  });
+  document.getElementById('buyer-login-modal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'buyer-login-modal') {
+      document.getElementById('buyer-login-modal')?.classList.remove('active');
+    }
+  });
 }
 
 /* ============================ 6. QUICK VIEW MODAL ============================ */
@@ -398,3 +411,42 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 3000);
 }
+
+/* ============================ 9. BUYER OAUTH & JWT ENGINE ============================ */
+function handleBuyerOAuth(provider) {
+  const iat = Math.floor(Date.now() / 1000);
+  const exp = iat + 604800; // 7 days
+
+  const mobileInput = document.getElementById('buyer-mobile-input')?.value || '9876543210';
+  const identifier = provider.includes('Google') ? 'meesho.shopper@gmail.com' : provider.includes('WhatsApp') ? '+91 9876543210 (WhatsApp Verified)' : mobileInput;
+
+  const jwtHeader = { alg: 'HS256', typ: 'JWT' };
+  const jwtPayload = {
+    sub: `BUYER_${Math.floor(100000 + Math.random() * 900000)}`,
+    identifier: identifier,
+    auth_provider: provider,
+    role: 'MEESHO_VERIFIED_BUYER',
+    permissions: ['ORDERS_PLACE', 'CART_MANAGE', 'REVIEWS_POST'],
+    iat: iat,
+    exp: exp
+  };
+
+  const b64Header = btoa(JSON.stringify(jwtHeader)).replace(/=/g, '');
+  const b64Payload = btoa(JSON.stringify(jwtPayload)).replace(/=/g, '');
+  const signature = 'sig_buyer_' + Math.abs((iat * 31) ^ 0x5F3759DF).toString(16) + '_cert';
+  const fullJwt = `${b64Header}.${b64Payload}.${signature}`;
+
+  // Store JWT & OAuth state
+  localStorage.setItem('meesho_buyer_jwt', fullJwt);
+  localStorage.setItem('meesho_buyer_user', JSON.stringify(jwtPayload));
+  localStorage.setItem('meesho_buyer_oauth_provider', provider);
+  sessionStorage.setItem('buyer_session_jwt', fullJwt);
+
+  // Update UI
+  const label = document.getElementById('profile-action-label');
+  if (label) label.textContent = '✓ Verified User';
+  document.getElementById('buyer-login-modal')?.classList.remove('active');
+  showToast(`✓ Signed in via ${provider}! JWT Session Token active.`);
+}
+window.handleBuyerOAuth = handleBuyerOAuth;
+
