@@ -253,9 +253,9 @@ function renderScenario(key) {
       `🔗 Campaign Referral Link: https://meesho.com/campaign/${key}`;
 
     const encodedCopy = encodeURIComponent(fullAdBrief);
-    const whatsappUrl = `https://wa.me/${c.phone}?text=${encodedCopy}`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=${c.phone}&text=${encodedCopy}`;
     const smsUrl = `sms:+${c.phone}?body=${encodedCopy}`;
-    const emailUrl = `mailto:${c.email}?subject=Meesho%20Sponsorship%20Campaign%20Brief&body=${encodedCopy}`;
+    const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${c.email}&su=${encodeURIComponent('Meesho Sponsorship Campaign Brief: ' + (c.headline || 'AI Partnership'))}&body=${encodedCopy}`;
 
     return `
       <div class="creator-card" id="card-${c.id}" style="display: flex; flex-direction: column; justify-content: space-between; ${isCampaignLaunched ? 'border-color: #038D63; box-shadow: 0 6px 20px rgba(3, 141, 99, 0.15);' : ''}">
@@ -280,7 +280,7 @@ function renderScenario(key) {
           <!-- REAL CLICKABLE MULTI-CHANNEL OUTREACH LINKS -->
           <div style="border-top: 1px solid var(--border-color); padding-top: 10px; display: flex; flex-direction: column; gap: 8px;">
             <span class="outreach-label" style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Real Direct Outreach (Sends Full Ad Brief)</span>
-            <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #E8F7F0; color: #038D63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px; border-radius: 8px; border: 1px solid #BCEAD5;">
+            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #E8F7F0; color: #038D63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px; border-radius: 8px; border: 1px solid #BCEAD5;">
               <span>💬 Send via WhatsApp</span>
               <span>↗</span>
             </a>
@@ -288,7 +288,7 @@ function renderScenario(key) {
               <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; background: #EEECFA; color: #4A1FB8; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 6px;">
                 📱 Send SMS
               </a>
-              <a href="${emailUrl}" style="display: flex; align-items: center; justify-content: center; background: #FFF5F7; color: #D3184B; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 6px;">
+              <a href="${emailUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; background: #FFF5F7; color: #D3184B; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 6px;">
                 ✉️ Send Email
               </a>
             </div>
@@ -395,7 +395,7 @@ function setupLaunchDispatch() {
             borderColor: '#038D63',
             text: '🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।',
             actionText: '💬 Open Real WhatsApp Chat',
-            actionLink: 'https://wa.me/918591852051?text=' + encodeURIComponent('🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।')
+            actionLink: 'https://api.whatsapp.com/send/?phone=918591852051&text=' + encodeURIComponent('🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।')
           },
           {
             delay: 1000,
@@ -417,7 +417,7 @@ function setupLaunchDispatch() {
             borderColor: '#D3184B',
             text: 'Subject: Meesho Sponsorship Campaign Brief — UP East Bedsheets (₹349)<br />Attached: High-res product images, GST verified invoice tag & Avadhi ad copy.',
             actionText: '✉️ Open Real Email in Gmail',
-            actionLink: 'mailto:arkachakraborty2824@gmail.com?subject=Meesho%20Sponsorship%20Campaign%20Brief&body=' + encodeURIComponent('Hi Arka, please find attached the Meesho Sponsorship Campaign brief for Jaipuri Bedsheets.')
+            actionLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=arkachakraborty2824@gmail.com&su=' + encodeURIComponent('Meesho Sponsorship Campaign Brief — UP East Bedsheets (₹349)') + '&body=' + encodeURIComponent('Hi Arka,\n\nPlease find attached the Meesho Sponsorship Campaign brief for Jaipuri Bedsheets.\n\nCampaign Link: https://meesho.com/campaign/up-bedsheets\nSponsorship Fee: ₹18,000 + ₹35/order')
           },
           {
             delay: 2600,
@@ -428,7 +428,7 @@ function setupLaunchDispatch() {
             borderColor: '#038D63',
             text: 'Hey Meesho Team! Received the brief & sample link for Jaipuri Bedsheets (₹349). Campaign reel goes live tomorrow at 6 PM! 🚀',
             actionText: '💬 Reply on WhatsApp',
-            actionLink: 'https://wa.me/918591852051?text=Thanks%20Arka!'
+            actionLink: 'https://api.whatsapp.com/send/?phone=918591852051&text=Thanks%20Arka!'
           },
           {
             delay: 3500,
@@ -439,7 +439,7 @@ function setupLaunchDispatch() {
             borderColor: '#D3184B',
             text: 'Re: Meesho Sponsorship Campaign Brief — Draft reel video and e-signature verified GST invoice have been uploaded to the portal.',
             actionText: '✉️ Reply via Email',
-            actionLink: 'mailto:arkachakraborty2824@gmail.com?subject=Re:%20Meesho%20Sponsorship%20Campaign%20Brief'
+            actionLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=arkachakraborty2824@gmail.com&su=' + encodeURIComponent('Re: Meesho Sponsorship Campaign Brief') + '&body=' + encodeURIComponent('Hi Arka,\n\nThanks for verifying the draft reel and invoice!')
           },
           {
             delay: 4300,
@@ -490,3 +490,26 @@ function setupLaunchDispatch() {
     });
   }
 }
+
+function openAllLiveDispatches() {
+  const scenario = SCENARIOS[currentScenarioKey];
+  if (!scenario || !scenario.creators || scenario.creators.length === 0) return;
+  const topCreator = scenario.creators[0];
+  const fullAdBrief = `MEESHO INFLUENCER SPONSORSHIP CAMPAIGN BRIEF\n\n` +
+    `🎯 Headline: ${topCreator.headline}\n` +
+    `💰 Compensation: ${topCreator.payout || 'Verified Integration & Rev-Share'}\n\n` +
+    `${topCreator.hook || ''}\n\n` +
+    `${topCreator.valueProps || ''}\n\n` +
+    `🗣️ Verbatim Script:\n${topCreator.hindi}\n\n` +
+    `🔗 Campaign Referral Link: https://meesho.com/campaign/${currentScenarioKey}`;
+
+  const encodedCopy = encodeURIComponent(fullAdBrief);
+  const waUrl = `https://api.whatsapp.com/send/?phone=${topCreator.phone}&text=${encodedCopy}`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${topCreator.email}&su=${encodeURIComponent('Meesho Sponsorship Campaign Brief: ' + topCreator.headline)}&body=${encodedCopy}`;
+
+  window.open(waUrl, '_blank');
+  setTimeout(() => {
+    window.open(gmailUrl, '_blank');
+  }, 300);
+}
+window.openAllLiveDispatches = openAllLiveDispatches;
