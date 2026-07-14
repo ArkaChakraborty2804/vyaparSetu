@@ -148,17 +148,17 @@ function handleOAuthLogin(provider) {
     identifier = 'supplier.partner@gmail.com';
     gstin = '29GOOGLE8819F1Z5';
     authType = 'OAUTH2_GOOGLE_OIDC';
-    providerTitle = 'Google OAuth 2.0 (OpenID Connect)';
+    providerTitle = 'Google Verified Account';
   } else if (provider === 'whatsapp') {
     identifier = '+91 9876543210 (Verified WhatsApp API)';
     gstin = '29WHATSAPP9912Z1';
     authType = 'OAUTH2_WHATSAPP_CLOUD';
-    providerTitle = 'WhatsApp Cloud O-Auth & OTP';
+    providerTitle = 'WhatsApp Verified Account';
   } else {
     identifier = 'DIGILOCKER_GSTIN_USER';
     gstin = '27DIGILOCKER001Z9';
     authType = 'OAUTH2_DIGILOCKER_GOVT';
-    providerTitle = 'DigiLocker / GST Portal Verified O-Auth';
+    providerTitle = 'DigiLocker / GST Portal Verified';
   }
 
   const oauthAccessToken = `bearer_oauth_${provider}_` + Math.random().toString(36).substring(2, 12) + Math.random().toString(36).substring(2, 12);
