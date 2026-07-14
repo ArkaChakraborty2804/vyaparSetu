@@ -189,10 +189,22 @@
           </div>
         </div>
 
-        <a href="vyaparsetu-ai-broker.html" target="vyaparsetu_ai_tab" class="btn-robot-automate" id="btn-open-ai-robot" style="text-decoration: none;">
-          <span class="robot-btn-icon">🤖</span>
-          <span>Automate Your Influencer Market ✨</span>
-        </a>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <button type="button" id="btn-open-ai-agent-how" style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; color: #3B169E; border: 2px solid #D6D0F2; padding: 14px 20px; border-radius: 14px; font-weight: 800; font-size: 14.5px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <span style="font-size: 18px;">💡</span>
+            <span>How it Works (AI Agent)</span>
+          </button>
+
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #FF0000; color: #FFFFFF; text-decoration: none; padding: 14px 20px; border-radius: 14px; font-weight: 800; font-size: 14.5px; transition: all 0.2s; box-shadow: 0 4px 14px rgba(255,0,0,0.3);">
+            <span style="display: flex; align-items: center; justify-content: center; background: #FFFFFF; color: #FF0000; width: 24px; height: 18px; border-radius: 4px; font-size: 11px; font-weight: 900;">▶</span>
+            <span>YouTube Video Demo</span>
+          </a>
+
+          <a href="vyaparsetu-ai-broker.html" target="vyaparsetu_ai_tab" class="btn-robot-automate" id="btn-open-ai-robot" style="text-decoration: none;">
+            <span class="robot-btn-icon">🤖</span>
+            <span>Automate Your Influencer Market ✨</span>
+          </a>
+        </div>
       </div>
 
       <!-- 3. Hero Composition Banner -->
@@ -427,6 +439,60 @@
       <div class="ai-console-footer">
         <button class="btn-ai-cancel" id="btn-cancel-ai-modal" type="button">Cancel</button>
         <button class="btn-ai-activate" id="btn-confirm-ai-activate" type="button">🚀 Activate Autonomous AI Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== AI AGENT HOW IT WORKS MODAL ==================== -->
+  <div class="ai-console-modal" id="ai-agent-how-modal" style="display: none;">
+    <div class="ai-console-card" style="max-width: 720px; background: #1E1F2C; border: 1px solid #3A3D54;">
+      <div class="ai-console-header" style="background: linear-gradient(135deg, #2A1C5A, #4A1FB8); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 28px;">🤖</span>
+          <div>
+            <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: #FFF;">How VyaparSetu AI Agent Works</h3>
+            <span style="font-size: 12px; color: #E8E0FF;">4-Stage Autonomous Influencer Marketing Pipeline</span>
+          </div>
+        </div>
+        <button id="btn-close-ai-how" type="button" style="background: transparent; border: none; color: #FFF; font-size: 20px; cursor: pointer;">✕</button>
+      </div>
+
+      <div class="ai-console-body" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; max-height: 70vh; overflow-y: auto;">
+        <div style="display: flex; gap: 14px; align-items: flex-start; background: #262838; padding: 16px; border-radius: 12px; border-left: 4px solid #4A1FB8;">
+          <span style="font-size: 24px;">📦</span>
+          <div>
+            <h4 style="margin: 0 0 4px; color: #FFF; font-size: 15px;">Stage 1: Catalog & Vector RAG Ingestion</h4>
+            <p style="margin: 0; font-size: 13px; color: #A3A6BC; line-height: 1.4;">The AI agent scans your live Meesho store inventory, extracting item specifications, target price tiers (e.g. ₹349 liquidation), and regional demand hotspots.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start; background: #262838; padding: 16px; border-radius: 12px; border-left: 4px solid #9F2089;">
+          <span style="font-size: 24px;">🎯</span>
+          <div>
+            <h4 style="margin: 0 0 4px; color: #FFF; font-size: 15px;">Stage 2: Approximate Nearest Neighbors (ANN) Creator Match</h4>
+            <p style="margin: 0; font-size: 13px; color: #A3A6BC; line-height: 1.4;">Using high-dimensional vector embeddings, the bot matches your SKUs with verified top creators across Uttar Pradesh, Bihar, and Rajasthan with 99%+ demographic fit.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start; background: #262838; padding: 16px; border-radius: 12px; border-left: 4px solid #E2483D;">
+          <span style="font-size: 24px;">🗣️</span>
+          <div>
+            <h4 style="margin: 0 0 4px; color: #FFF; font-size: 15px;">Stage 3: Vernacular Multi-Dialect Ad Copy & Scripting</h4>
+            <p style="margin: 0; font-size: 13px; color: #A3A6BC; line-height: 1.4;">Instead of generic lines, the agent synthesizes full 4-part campaign packages: Reel Hooks (0-3s), Selling Points, Payout Terms, and verbatim scripts in Avadhi, Bhojpuri, and Hindi.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start; background: #262838; padding: 16px; border-radius: 12px; border-left: 4px solid #038D63;">
+          <span style="font-size: 24px;">⚡</span>
+          <div>
+            <h4 style="margin: 0 0 4px; color: #FFF; font-size: 15px;">Stage 4: Real-Time Multi-Channel Outreach Dispatch</h4>
+            <p style="margin: 0; font-size: 13px; color: #A3A6BC; line-height: 1.4;">After your human-in-the-loop verification, the agent instantly broadcasts the sponsorship briefs via direct WhatsApp (`wa.me`), TRAI DLT SMS, and Gmail SMTP Relay with real-time replies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-console-footer" style="background: #171822; padding: 16px 24px; display: flex; justify-content: flex-end; border-top: 1px solid #2C2E40;">
+        <button type="button" id="btn-got-it-ai-how" style="background: #4A1FB8; color: #FFF; font-weight: 800; padding: 10px 24px; border-radius: 10px; border: none; cursor: pointer;">Got It, Let's Automate! 🚀</button>
       </div>
     </div>
   </div>

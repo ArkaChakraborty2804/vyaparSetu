@@ -124,10 +124,30 @@ function setupESignatureAlert() {
 }
 
 function setupAIRobotAutomation() {
-  const openBtn = document.getElementById('btn-open-ai-robot');
-  if (openBtn) {
-    openBtn.addEventListener('click', () => {
-      window.open('vyaparsetu-ai-broker.html', '_blank');
+  const howBtn = document.getElementById('btn-open-ai-agent-how');
+  const howModal = document.getElementById('ai-agent-how-modal');
+  const closeHowBtn = document.getElementById('btn-close-ai-how');
+  const gotItBtn = document.getElementById('btn-got-it-ai-how');
+
+  if (howBtn && howModal) {
+    howBtn.addEventListener('click', () => {
+      howModal.classList.add('active');
+      howModal.style.display = 'flex';
+    });
+  }
+
+  const closeAgentModal = () => {
+    if (howModal) {
+      howModal.classList.remove('active');
+      howModal.style.display = 'none';
+    }
+  };
+
+  if (closeHowBtn) closeHowBtn.addEventListener('click', closeAgentModal);
+  if (gotItBtn) gotItBtn.addEventListener('click', closeAgentModal);
+  if (howModal) {
+    howModal.addEventListener('click', (e) => {
+      if (e.target === howModal) closeAgentModal();
     });
   }
 
