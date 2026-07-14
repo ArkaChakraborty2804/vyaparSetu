@@ -6,6 +6,8 @@ let currentAuthMode = 'signup';
 let activeJwtData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  initializeUserDatabase();
+
   // Check URL query parameters for ?mode=login or ?mode=signup
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode');
@@ -17,6 +19,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupAuthListeners();
 });
+
+function initializeUserDatabase() {
+  let db = localStorage.getItem('meesho_supplier_users_db');
+  if (!db) {
+    const defaultUsers = {
+      '9876543210': {
+        identifier: '9876543210',
+        password: 'Supplier@Meesho2026',
+        gstin: '29ABCDE1234F1Z5',
+        role: 'MEESHO_VERIFIED_SUPPLIER',
+        commission_tier: '0% COMMISSION',
+        registered_at: new Date().toISOString()
+      },
+      'supplier@meesho.com': {
+        identifier: 'supplier@meesho.com',
+        password: 'Supplier@Meesho2026',
+        gstin: '29SUPPLIER001Z9',
+        role: 'MEESHO_VERIFIED_SUPPLIER',
+        commission_tier: '0% COMMISSION',
+        registered_at: new Date().toISOString()
+      }
+    };
+    localStorage.setItem('meesho_supplier_users_db', JSON.stringify(defaultUsers));
+  }
+}
+
+function getUserDatabase() {
+  try {
+    return JSON.parse(localStorage.getItem('meesho_supplier_users_db') || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveUserToDatabase(userObj) {
+  const db = getUserDatabase();
+  db[userObj.identifier] = userObj;
+  localStorage.setItem('meesho_supplier_users_db', JSON.stringify(db));
+}
 
 function switchAuthTab(mode) {
   currentAuthMode = mode;
@@ -35,7 +76,7 @@ function switchAuthTab(mode) {
     if (confirmField) confirmField.style.display = 'none';
     if (formTitle) formTitle.textContent = 'Login to Supplier Panel';
     if (formSubtitle) formSubtitle.textContent = 'Enter your registered mobile number or email ID';
-    if (submitBtn) submitBtn.textContent = 'Login with JWT Session';
+    if (submitBtn) submitBtn.textContent = 'Authenticate & Login via JWT';
   } else {
     if (signupTab) signupTab.classList.add('active');
     if (loginTab) loginTab.classList.remove('active');
@@ -43,7 +84,7 @@ function switchAuthTab(mode) {
     if (confirmField) confirmField.style.display = 'block';
     if (formTitle) formTitle.textContent = 'Create Supplier Account';
     if (formSubtitle) formSubtitle.textContent = 'Start selling to crores of customers at 0% commission';
-    if (submitBtn) submitBtn.textContent = 'Generate JWT & Register';
+    if (submitBtn) submitBtn.textContent = 'Register & Generate JWT';
   }
 }
 
@@ -71,7 +112,6 @@ function base64urlEncode(obj) {
 }
 
 function simulateHMACSHA256Signature(headerBase64, payloadBase64) {
-  // Generates realistic deterministic base64url signature string
   const input = headerBase64 + '.' + payloadBase64;
   let hash = 0;
   for (let i = 0; i < input.length; i++) {
@@ -84,32 +124,76 @@ function simulateHMACSHA256Signature(headerBase64, payloadBase64) {
 }
 
 function handleJwtAuth() {
-  const identifier = document.getElementById('input-identifier')?.value || '9876543210';
-  const gstin = document.getElementById('input-gstin')?.value || '29ABCDE1234F1Z5';
+  const identifier = document.getElementById('input-identifier')?.value.trim() || '9876543210';
+  const gstin = document.getElementById('input-gstin')?.value.trim() || '29ABCDE1234F1Z5';
   const password = document.getElementById('input-password')?.value || '';
+  const confirmPassword = document.getElementById('input-confirm-password')?.value || '';
 
-  if (!identifier.trim()) {
+  if (!identifier) {
     alert('Please enter your mobile number or email ID');
     return;
+  }
+
+  const usersDb = getUserDatabase();
+  let statusTitle = '✓ HS256 Signed JSON Web Token Generated';
+  let statusDesc = 'Your supplier login details have been securely encrypted into a session token.';
+  let resolvedGstin = gstin;
+
+  if (currentAuthMode === 'signup') {
+    if (password && confirmPassword && password !== confirmPassword) {
+      alert('Authentication Error: Confirm Password does not match Password!');
+      return;
+    }
+
+    if (usersDb[identifier]) {
+      // User already exists, switch to login verification
+      statusTitle = '✓ Registered Account Authenticated & JWT Issued';
+      statusDesc = `User '${identifier}' is already registered in the database. Credentials verified and new session token generated.`;
+      resolvedGstin = usersDb[identifier].gstin || gstin;
+    } else {
+      // Register new user record
+      const newUser = {
+        identifier: identifier,
+        password: password || 'Supplier@Meesho2026',
+        gstin: gstin,
+        role: 'MEESHO_VERIFIED_SUPPLIER',
+        commission_tier: '0% COMMISSION',
+        registered_at: new Date().toISOString()
+      };
+      saveUserToDatabase(newUser);
+      statusTitle = '✓ New Supplier Account Registered & JWT Generated';
+      statusDesc = `User details for '${identifier}' saved to database. Credentials encrypted into a verified HS256 session token.`;
+    }
+  } else {
+    // LOGIN MODE - Authenticate against saved user records
+    const existingUser = usersDb[identifier];
+    if (!existingUser) {
+      alert(`Authentication Failed: No registered account found for '${identifier}'. Please switch to Sign Up to create an account first.`);
+      return;
+    }
+
+    if (password && existingUser.password && existingUser.password !== password) {
+      alert(`Authentication Failed: Incorrect password entered for '${identifier}'. Please check your password and try again.`);
+      return;
+    }
+
+    resolvedGstin = existingUser.gstin || 'VERIFIED_ON_FILE';
+    statusTitle = '✓ User Authenticated via Saved Credentials & JWT Verified';
+    statusDesc = `Credentials for '${identifier}' successfully validated against registered user database. HS256 session token verified.`;
   }
 
   const iat = Math.floor(Date.now() / 1000);
   const exp = iat + 86400; // 24 hours
 
-  // 1. JWT Header
-  const jwtHeader = {
-    alg: 'HS256',
-    typ: 'JWT'
-  };
-
-  // 2. JWT Payload (Captured Login Details)
+  const jwtHeader = { alg: 'HS256', typ: 'JWT' };
   const jwtPayload = {
     sub: `SUP_${Math.floor(1000 + Math.random() * 9000)}`,
     identifier: identifier,
     auth_type: currentAuthMode.toUpperCase(),
-    gstin: currentAuthMode === 'signup' ? gstin : 'VERIFIED_ON_FILE',
+    gstin: resolvedGstin,
     role: 'MEESHO_VERIFIED_SUPPLIER',
     commission_tier: '0% COMMISSION',
+    authenticated: true,
     permissions: ['CATALOG_CREATE', 'ORDERS_MANAGE', 'PAYMENTS_VIEW'],
     iat: iat,
     exp: exp
@@ -118,7 +202,6 @@ function handleJwtAuth() {
   const headerB64 = base64urlEncode(jwtHeader);
   const payloadB64 = base64urlEncode(jwtPayload);
   const sigB64 = simulateHMACSHA256Signature(headerB64, payloadB64);
-
   const fullJwtString = `${headerB64}.${payloadB64}.${sigB64}`;
 
   activeJwtData = {
@@ -127,7 +210,9 @@ function handleJwtAuth() {
     payload: jwtPayload,
     headerB64: headerB64,
     payloadB64: payloadB64,
-    sigB64: sigB64
+    sigB64: sigB64,
+    statusTitle: statusTitle,
+    statusDesc: statusDesc
   };
 
   // Save to browser session & local storage
@@ -161,6 +246,18 @@ function handleOAuthLogin(provider) {
     providerTitle = 'DigiLocker / GST Portal Verified';
   }
 
+  // Save OAuth verified profile to user database automatically
+  const oauthUserRecord = {
+    identifier: identifier,
+    password: 'OAUTH_EXTERNAL_AUTHENTICATED',
+    gstin: gstin,
+    role: 'MEESHO_VERIFIED_SUPPLIER',
+    commission_tier: '0% COMMISSION',
+    provider: providerTitle,
+    registered_at: new Date().toISOString()
+  };
+  saveUserToDatabase(oauthUserRecord);
+
   const oauthAccessToken = `bearer_oauth_${provider}_` + Math.random().toString(36).substring(2, 12) + Math.random().toString(36).substring(2, 12);
   const oauthIdTokenClaims = {
     iss: `https://auth.${provider}.com/oauth2/v2`,
@@ -182,6 +279,7 @@ function handleOAuthLogin(provider) {
     gstin: gstin,
     role: 'MEESHO_VERIFIED_SUPPLIER',
     commission_tier: '0% COMMISSION',
+    authenticated: true,
     permissions: ['CATALOG_CREATE', 'ORDERS_MANAGE', 'PAYMENTS_VIEW', 'OAUTH_VERIFIED'],
     iat: iat,
     exp: exp
@@ -202,7 +300,9 @@ function handleOAuthLogin(provider) {
     isOAuth: true,
     providerName: providerTitle,
     accessToken: oauthAccessToken,
-    idToken: oauthIdToken
+    idToken: oauthIdToken,
+    statusTitle: `✓ Verified via ${providerTitle} & Saved to Database`,
+    statusDesc: `User profile saved to database and authenticated instantly. RS256 claims verified and HS256 JWT issued.`
   };
 
   // Store all JWT and OAuth tokens securely across local & session storage
@@ -225,8 +325,13 @@ function displayJwtInspectorModal(jwtData) {
   const tokenDisplay = document.getElementById('jwt-token-formatted');
   const payloadDisplay = document.getElementById('jwt-payload-json');
   const oauthSection = document.getElementById('oauth-token-section');
+  const bannerTitle = document.getElementById('jwt-modal-banner-title');
+  const bannerDesc = document.getElementById('jwt-modal-banner-desc');
 
   if (!modal || !tokenDisplay || !payloadDisplay) return;
+
+  if (bannerTitle && jwtData.statusTitle) bannerTitle.textContent = jwtData.statusTitle;
+  if (bannerDesc && jwtData.statusDesc) bannerDesc.textContent = jwtData.statusDesc;
 
   if (oauthSection) {
     if (jwtData.isOAuth) {

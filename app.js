@@ -420,12 +420,32 @@ function handleBuyerOAuth(provider) {
   const mobileInput = document.getElementById('buyer-mobile-input')?.value || '9876543210';
   const identifier = provider.includes('Google') ? 'meesho.shopper@gmail.com' : provider.includes('WhatsApp') ? '+91 9876543210 (WhatsApp Verified)' : mobileInput;
 
+  // Persistent Buyer Database lookup & registration
+  let buyerDb = {};
+  try {
+    buyerDb = JSON.parse(localStorage.getItem('meesho_buyer_users_db') || '{}');
+  } catch (e) {
+    buyerDb = {};
+  }
+
+  const isExisting = !!buyerDb[identifier];
+  const buyerRecord = {
+    identifier: identifier,
+    auth_provider: provider,
+    role: 'MEESHO_VERIFIED_BUYER',
+    authenticated: true,
+    last_login: new Date().toISOString()
+  };
+  buyerDb[identifier] = buyerRecord;
+  localStorage.setItem('meesho_buyer_users_db', JSON.stringify(buyerDb));
+
   const jwtHeader = { alg: 'HS256', typ: 'JWT' };
   const jwtPayload = {
     sub: `BUYER_${Math.floor(100000 + Math.random() * 900000)}`,
     identifier: identifier,
     auth_provider: provider,
     role: 'MEESHO_VERIFIED_BUYER',
+    authenticated: true,
     permissions: ['ORDERS_PLACE', 'CART_MANAGE', 'REVIEWS_POST'],
     iat: iat,
     exp: exp
@@ -446,7 +466,9 @@ function handleBuyerOAuth(provider) {
   const label = document.getElementById('profile-action-label');
   if (label) label.textContent = '✓ Verified User';
   document.getElementById('buyer-login-modal')?.classList.remove('active');
-  showToast(`✓ Signed in via ${provider}! JWT Session Token active.`);
+  const actionMsg = isExisting ? `✓ Welcome back ${identifier}! Authenticated via ${provider}.` : `✓ Account registered for ${identifier} via ${provider}!`;
+  showToast(actionMsg);
 }
 window.handleBuyerOAuth = handleBuyerOAuth;
+
 
