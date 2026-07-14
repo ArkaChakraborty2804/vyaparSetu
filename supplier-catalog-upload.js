@@ -326,3 +326,42 @@ window.deleteCatalogItem = function(sku) {
     renderMyCatalogsTable();
   }
 };
+
+/* ============================ GLOBAL LOGOUT FUNCTIONALITY ============================ */
+function handleSupplierLogout() {
+  if (!confirm('Are you sure you want to log out and erase your Meesho Supplier session data?')) {
+    return;
+  }
+  const dbJson = localStorage.getItem('meesho_supplier_users_db');
+  if (dbJson) {
+    try {
+      const db = JSON.parse(dbJson);
+      const userJson = localStorage.getItem('meesho_supplier_user');
+      if (userJson) {
+        const userObj = JSON.parse(userJson);
+        if (db[userObj.identifier]) {
+          db[userObj.identifier].authenticated = false;
+          localStorage.setItem('meesho_supplier_users_db', JSON.stringify(db));
+        }
+      }
+    } catch (err) {
+      console.warn('Error updating database logout state:', err);
+    }
+  }
+
+  const keysToRemove = [
+    'meesho_supplier_jwt',
+    'meesho_supplier_user',
+    'meesho_auth_header',
+    'meesho_oauth_access_token',
+    'meesho_oauth_id_token',
+    'meesho_oauth_provider'
+  ];
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+  sessionStorage.removeItem('session_jwt');
+  sessionStorage.removeItem('session_oauth_access');
+
+  alert('✓ Successfully logged out! Authenticated session tokens and user details have been erased.');
+  window.location.href = 'supplier-auth.html?mode=login';
+}
+window.handleSupplierLogout = handleSupplierLogout;

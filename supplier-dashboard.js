@@ -18,7 +18,7 @@ function loadJwtSessionProfile() {
   const nameEl = document.getElementById('hub-welcome-name');
   const storeSelectorEl = document.getElementById('store-name-display');
   const storeAvatarEl = document.getElementById('store-avatar-char');
-  const logoutBtn = document.querySelector('.btn-hub-logout');
+  const logoutBtn = document.getElementById('sidebar-logout-btn') || document.querySelector('.sidebar-logout-btn');
 
   if (!userJson && !jwtToken) {
     // No active session detected (User has logged out or hasn't signed in)
@@ -27,7 +27,7 @@ function loadJwtSessionProfile() {
     if (storeAvatarEl) storeAvatarEl.textContent = '🔒';
     if (logoutBtn) {
       logoutBtn.innerHTML = `
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
         <span>Sign In</span>
       `;
       logoutBtn.onclick = () => window.location.href = 'supplier-auth.html?mode=login';
@@ -36,6 +36,17 @@ function loadJwtSessionProfile() {
       logoutBtn.style.borderColor = '#C4BAF0';
     }
     return;
+  }
+
+  if (logoutBtn) {
+    logoutBtn.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      <span>Logout</span>
+    `;
+    logoutBtn.onclick = () => handleSupplierLogout();
+    logoutBtn.style.background = 'rgba(239, 68, 68, 0.15)';
+    logoutBtn.style.color = '#F87171';
+    logoutBtn.style.borderColor = 'rgba(239, 68, 68, 0.3)';
   }
 
   if (userJson) {
