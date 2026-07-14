@@ -103,6 +103,7 @@ let currentScenarioKey = 'up-bedsheets';
 let isCampaignLaunched = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupThemeToggle();
   setupTabs();
   setupScenarios();
   renderScenario(currentScenarioKey);
@@ -110,6 +111,38 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLaunchDispatch();
   setupBackToMeesho();
 });
+
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById('btn-theme-toggle');
+  const iconSpan = document.getElementById('theme-icon');
+  const labelSpan = document.getElementById('theme-label');
+
+  const savedTheme = localStorage.getItem('vyaparsetu_theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+    if (iconSpan) iconSpan.textContent = '☀️';
+    if (labelSpan) labelSpan.textContent = 'Light';
+  } else {
+    document.body.classList.remove('dark-theme');
+    if (iconSpan) iconSpan.textContent = '🌙';
+    if (labelSpan) labelSpan.textContent = 'Dark';
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-theme');
+      if (isDark) {
+        localStorage.setItem('vyaparsetu_theme', 'dark');
+        if (iconSpan) iconSpan.textContent = '☀️';
+        if (labelSpan) labelSpan.textContent = 'Light';
+      } else {
+        localStorage.setItem('vyaparsetu_theme', 'light');
+        if (iconSpan) iconSpan.textContent = '🌙';
+        if (labelSpan) labelSpan.textContent = 'Dark';
+      }
+    });
+  }
+}
 
 function setupBackToMeesho() {
   const backBtn = document.getElementById('btn-back-meesho');
