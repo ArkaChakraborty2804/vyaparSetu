@@ -201,73 +201,52 @@ function renderScenario(key) {
   if (!container) return;
 
   container.innerHTML = data.creators.map((c) => {
-    const encodedCopy = encodeURIComponent(`${c.headline}\n\n${c.regional}\n\nCheck out the Meesho Campaign Link: https://meesho.com/campaign/${key}`);
+    const fullAdBrief = `MEESHO INFLUENCER SPONSORSHIP CAMPAIGN BRIEF\n\n` +
+      `🎯 Headline: ${c.headline}\n` +
+      `💰 Compensation: ${c.payout || 'Verified Integration & Rev-Share'}\n\n` +
+      `${c.hook || ''}\n\n` +
+      `${c.valueProps || ''}\n\n` +
+      `🗣️ Verbatim Script (Hindi/Vernacular):\n${c.hindi}\n\n` +
+      `🔗 Campaign Referral Link: https://meesho.com/campaign/${key}`;
+
+    const encodedCopy = encodeURIComponent(fullAdBrief);
     const whatsappUrl = `https://wa.me/${c.phone}?text=${encodedCopy}`;
     const smsUrl = `sms:+${c.phone}?body=${encodedCopy}`;
     const emailUrl = `mailto:${c.email}?subject=Meesho%20Sponsorship%20Campaign%20Brief&body=${encodedCopy}`;
 
     return `
-      <div class="creator-card" id="card-${c.id}" style="${isCampaignLaunched ? 'border-color: #038D63; box-shadow: 0 6px 20px rgba(3, 141, 99, 0.15);' : ''}">
-        <div class="creator-left">
+      <div class="creator-card" id="card-${c.id}" style="display: flex; flex-direction: column; justify-content: space-between; ${isCampaignLaunched ? 'border-color: #038D63; box-shadow: 0 6px 20px rgba(3, 141, 99, 0.15);' : ''}">
+        <div class="creator-left" style="margin-bottom: 16px;">
           <img src="${c.avatar}" class="creator-avatar" alt="${c.name}" />
           <div class="creator-info">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <h3 style="margin: 0;">${c.name}</h3>
+              <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: #1E1F2C;">${c.name}</h3>
               ${isCampaignLaunched ? '<span style="background: #038D63; color: #FFF; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px;">DISPATCHED ✓</span>' : ''}
             </div>
-            <div class="creator-meta">${c.followers} • Regional Match</div>
-            <span class="similarity-badge">⚡ ${c.similarity}</span>
+            <div class="creator-meta" style="font-size: 13px; color: #58596B; margin-bottom: 6px;">${c.followers} • Regional Match</div>
+            <span class="similarity-badge" style="display: inline-block;">⚡ ${c.similarity}</span>
           </div>
         </div>
 
-        <div class="vernacular-box" style="display: flex; flex-direction: column; gap: 8px;">
-          <div class="vernacular-head">
-            <span>AI INFLUENCER CAMPAIGN PACKAGE</span>
-            <span>HUMAN-IN-THE-LOOP REVIEW</span>
+        <div class="creator-actions" style="margin-top: auto;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <button class="btn-approve" onclick="toggleCreatorStatus('${c.id}', true)">✓ Approved</button>
+            <button class="btn-veto" onclick="toggleCreatorStatus('${c.id}', false)">✕ Veto / Exclude</button>
           </div>
-
-          <!-- 1. Headline & Sponsorship Offer -->
-          <div style="background: #FFF; border: 1px solid #E6E1F5; padding: 10px 12px; border-radius: 8px;">
-            <strong style="color: #4A1FB8; font-size: 14.5px; display: block; margin-bottom: 4px;">${c.headline}</strong>
-            <span style="font-size: 12.5px; color: #038D63; font-weight: 700;">${c.payout || '💰 Creator Sponsorship: Verified Integration & Rev-Share'}</span>
-          </div>
-
-          <!-- 2. Creative Hook & Selling Points -->
-          <div style="display: grid; grid-template-columns: 1fr; gap: 6px; font-size: 12.5px; color: #1E1F2C;">
-            <div style="background: #F8F9FD; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #9F2089;">
-              <strong>${c.hook || '🎬 Hook Concept:'}</strong>
-            </div>
-            <div style="background: #F8F9FD; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #4A1FB8;">
-              <strong>${c.valueProps || '💎 Value Propositions:'}</strong>
-            </div>
-          </div>
-
-          <!-- 3. Verbatim Script & Dialect -->
-          <div class="vernacular-text" style="background: #FFF; padding: 10px; border-radius: 6px; border: 1px dashed #D6D0F2; font-size: 13px;">
-            ${c.regional}
-          </div>
-          <div class="vernacular-hindi" style="font-size: 13px; line-height: 1.4;">
-            ${c.hindi}
-          </div>
-        </div>
-
-        <div class="creator-actions">
-          <button class="btn-approve" onclick="toggleCreatorStatus('${c.id}', true)">✓ Approved</button>
-          <button class="btn-veto" onclick="toggleCreatorStatus('${c.id}', false)">✕ Veto / Exclude</button>
 
           <!-- REAL CLICKABLE MULTI-CHANNEL OUTREACH LINKS -->
-          <div style="border-top: 1px solid #E6E1F5; margin-top: 6px; padding-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-            <span style="font-size: 10.5px; font-weight: 700; color: #58596B; text-transform: uppercase;">Real Direct Outreach</span>
-            <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #E8F7F0; color: #038D63; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 8px; border: 1px solid #BCEAD5;">
-              <span>💬 Open Live WhatsApp</span>
+          <div style="border-top: 1px solid #E6E1F5; padding-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 10.5px; font-weight: 700; color: #58596B; text-transform: uppercase; letter-spacing: 0.5px;">Real Direct Outreach (Sends Full Ad Brief)</span>
+            <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #E8F7F0; color: #038D63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px; border-radius: 8px; border: 1px solid #BCEAD5;">
+              <span>💬 Send via WhatsApp</span>
               <span>↗</span>
             </a>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-              <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; background: #EEECFA; color: #4A1FB8; text-decoration: none; font-size: 12px; font-weight: 700; padding: 6px; border-radius: 6px;">
-                📱 SMS Alert
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; background: #EEECFA; color: #4A1FB8; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 6px;">
+                📱 Send SMS
               </a>
-              <a href="${emailUrl}" style="display: flex; align-items: center; justify-content: center; background: #FFF5F7; color: #D3184B; text-decoration: none; font-size: 12px; font-weight: 700; padding: 6px; border-radius: 6px;">
-                ✉️ Email Brief
+              <a href="${emailUrl}" style="display: flex; align-items: center; justify-content: center; background: #FFF5F7; color: #D3184B; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 6px;">
+                ✉️ Send Email
               </a>
             </div>
           </div>
