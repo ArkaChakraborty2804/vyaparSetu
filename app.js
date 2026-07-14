@@ -2,6 +2,10 @@
  * Meesho Front Page Prototype - Core Interactive Application Logic
  */
 
+// ==================== GOOGLE OAUTH CONFIGURATION ====================
+const GOOGLE_CLIENT_ID = '457707652675-u57kuvqnk258ngqbv6p73aofp2gcrcl1.apps.googleusercontent.com';
+// ====================================================================
+
 let currentFilter = 'all';
 let currentSort = 'relevance';
 let cart = [];

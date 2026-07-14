@@ -5,7 +5,7 @@
 // ==================== GOOGLE OAUTH CONFIGURATION ====================
 // Replace 'YOUR_GOOGLE_CLIENT_ID_HERE' below with your copied Client ID from Google Cloud Console
 // Example: const GOOGLE_CLIENT_ID = '1234567890-abcdefghijklmnop.apps.googleusercontent.com';
-const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+const GOOGLE_CLIENT_ID = '457707652675-u57kuvqnk258ngqbv6p73aofp2gcrcl1.apps.googleusercontent.com';
 // ====================================================================
 
 let currentAuthMode = 'signup';
