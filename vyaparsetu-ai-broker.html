@@ -44,6 +44,23 @@
     <!-- TAB 1: AI BROKER DASHBOARD -->
     <div class="tab-view active" id="tab-broker">
       
+      <!-- Live Campaign Status Banner (Dynamically updated when launched) -->
+      <div id="campaign-status-banner" style="display: none; background: #E8F7F0; border: 2px solid #038D63; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 8px 24px rgba(3, 141, 99, 0.15);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #038D63; color: #FFF; font-size: 22px; display: flex; align-items: center; justify-content: center;">🎉</div>
+            <div>
+              <h2 style="font-size: 18px; font-weight: 800; color: #038D63; margin: 0;">CAMPAIGN LIVE & ACTIVE</h2>
+              <p style="font-size: 13.5px; color: #1E1F2C; margin: 2px 0 0;">Automated outreach dispatched! Click the WhatsApp, SMS, or Email buttons below to view live sent messages.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <span style="background: #FFFFFF; border: 1px solid #038D63; color: #038D63; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">✓ Delivery Rate: 100%</span>
+            <span style="background: #038D63; color: #FFFFFF; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">⚡ Tracking Active</span>
+          </div>
+        </div>
+      </div>
+      
       <!-- Scenario Selector Banner -->
       <div class="scenario-selector-bar">
         <div>

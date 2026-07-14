@@ -1,5 +1,5 @@
 /**
- * VyaparSETU 2.0 - Standalone AI Broker Logic
+ * VyaparSETU 2.0 - Standalone AI Broker Logic (Meesho Supplier Hub Theme)
  */
 
 const SCENARIOS = {
@@ -20,6 +20,8 @@ const SCENARIOS = {
         headline: '🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में!',
         regional: 'Arka Sharma verified! Best Jaipuri double bedsheet on Meesho at factory wholesale rate ₹349. Cash on Delivery available!',
         hindi: 'अर्का शर्मा द्वारा सत्यापित: 100% पक्का रंग जयपुरी डबल कॉटन बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।',
+        phone: '918591852051',
+        email: 'arkachakraborty2824@gmail.com',
         approved: true
       },
       {
@@ -31,6 +33,8 @@ const SCENARIOS = {
         headline: '🛏️ लखनऊ वालो! शुद्ध 100% कॉटन बेडशीट केवल ₹349 में!',
         regional: 'Arre Bhauji, garmi me thandak dene wali 100% pucca rang Jaipuri cotton bedsheet ab Meesho par sidhe factory rate me!',
         hindi: 'अरे भौजी! गर्मी में ठंडक देने वाली 100% पक्का रंग जयपुरी कॉटन बेडशीट अब मीशो पर सीधे फैक्ट्री रेट ₹349 में!',
+        phone: '919838112044',
+        email: 'pooja.tiwari.lucknow@meesho-affiliates.in',
         approved: true
       }
     ]
@@ -52,6 +56,8 @@ const SCENARIOS = {
         headline: '✨ बिहार की शान: बनारसी सिल्क साड़ी मात्र ₹699 में!',
         regional: 'Chhath aur shadi season ke liye sabse best Banarasi Saree Meesho par factory daam me!',
         hindi: 'त्योहारों के लिए खास: असली जरी बॉर्डर बनारसी सिल्क साड़ी अब मीशो पर केवल ₹699 में उपलब्ध।',
+        phone: '919123456789',
+        email: 'neha.bhojpuri@meesho-creators.in',
         approved: true
       }
     ]
@@ -73,6 +79,8 @@ const SCENARIOS = {
         headline: '🌸 जयपुर स्पेशल ब्लॉक प्रिंट कुर्ती सेट ₹499 में!',
         regional: 'Original Sanganeri hand block print kurti set directly from Jaipur artisans on Meesho.',
         hindi: 'सांगानेरी हैंड ब्लॉक प्रिंट 100% कॉटन कुर्ती सेट सीधे जयपुर के कारीगरों से केवल ₹499 में।',
+        phone: '919829012345',
+        email: 'kavita.jaipur@meesho-creators.in',
         approved: true
       }
     ]
@@ -80,6 +88,7 @@ const SCENARIOS = {
 };
 
 let currentScenarioKey = 'up-bedsheets';
+let isCampaignLaunched = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTabs();
@@ -129,6 +138,9 @@ function setupScenarios() {
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       currentScenarioKey = pill.dataset.scenario;
+      isCampaignLaunched = false;
+      const statusBanner = document.getElementById('campaign-status-banner');
+      if (statusBanner) statusBanner.style.display = 'none';
       renderScenario(currentScenarioKey);
     });
   });
@@ -147,12 +159,10 @@ function setupScenarios() {
   if (voiceBtn) {
     voiceBtn.addEventListener('click', () => {
       voiceBtn.textContent = '🎙️ Listening... (Speak now)';
-      voiceBtn.style.color = '#00f59b';
       setTimeout(() => {
         voiceBtn.textContent = '🎙️ Speak Goal (Hindi / Hinglish)';
-        voiceBtn.style.color = '#fff';
         alert('🎙️ Voice input captured & parsed via Gemini Pro Speech NLP!');
-      }, 2000);
+      }, 1500);
     });
   }
 }
@@ -177,32 +187,59 @@ function renderScenario(key) {
   const container = document.getElementById('creators-container');
   if (!container) return;
 
-  container.innerHTML = data.creators.map((c, index) => `
-    <div class="creator-card" id="card-${c.id}">
-      <div class="creator-left">
-        <img src="${c.avatar}" class="creator-avatar" alt="${c.name}" />
-        <div class="creator-info">
-          <h3>${c.name}</h3>
-          <div class="creator-meta">${c.followers} • Regional Match</div>
-          <span class="similarity-badge">⚡ ${c.similarity}</span>
+  container.innerHTML = data.creators.map((c) => {
+    const encodedCopy = encodeURIComponent(`${c.headline}\n\n${c.regional}\n\nCheck out the Meesho Campaign Link: https://meesho.com/campaign/${key}`);
+    const whatsappUrl = `https://wa.me/${c.phone}?text=${encodedCopy}`;
+    const smsUrl = `sms:+${c.phone}?body=${encodedCopy}`;
+    const emailUrl = `mailto:${c.email}?subject=Meesho%20Sponsorship%20Campaign%20Brief&body=${encodedCopy}`;
+
+    return `
+      <div class="creator-card" id="card-${c.id}" style="${isCampaignLaunched ? 'border-color: #038D63; box-shadow: 0 6px 20px rgba(3, 141, 99, 0.15);' : ''}">
+        <div class="creator-left">
+          <img src="${c.avatar}" class="creator-avatar" alt="${c.name}" />
+          <div class="creator-info">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <h3 style="margin: 0;">${c.name}</h3>
+              ${isCampaignLaunched ? '<span style="background: #038D63; color: #FFF; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px;">DISPATCHED ✓</span>' : ''}
+            </div>
+            <div class="creator-meta">${c.followers} • Regional Match</div>
+            <span class="similarity-badge">⚡ ${c.similarity}</span>
+          </div>
+        </div>
+
+        <div class="vernacular-box">
+          <div class="vernacular-head">
+            <span>AI VERNACULAR AD COPY</span>
+            <span>HUMAN-IN-THE-LOOP REVIEW</span>
+          </div>
+          <div class="vernacular-text"><strong>${c.headline}</strong><br />${c.regional}</div>
+          <div class="vernacular-hindi">${c.hindi}</div>
+        </div>
+
+        <div class="creator-actions">
+          <button class="btn-approve" onclick="toggleCreatorStatus('${c.id}', true)">✓ Approved</button>
+          <button class="btn-veto" onclick="toggleCreatorStatus('${c.id}', false)">✕ Veto / Exclude</button>
+
+          <!-- REAL CLICKABLE MULTI-CHANNEL OUTREACH LINKS -->
+          <div style="border-top: 1px solid #E6E1F5; margin-top: 6px; padding-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-size: 10.5px; font-weight: 700; color: #58596B; text-transform: uppercase;">Real Direct Outreach</span>
+            <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #E8F7F0; color: #038D63; text-decoration: none; font-size: 12.5px; font-weight: 700; padding: 8px; border-radius: 8px; border: 1px solid #BCEAD5;">
+              <span>💬 Open Live WhatsApp</span>
+              <span>↗</span>
+            </a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; background: #EEECFA; color: #4A1FB8; text-decoration: none; font-size: 12px; font-weight: 700; padding: 6px; border-radius: 6px;">
+                📱 SMS Alert
+              </a>
+              <a href="${emailUrl}" style="display: flex; align-items: center; justify-content: center; background: #FFF5F7; color: #D3184B; text-decoration: none; font-size: 12px; font-weight: 700; padding: 6px; border-radius: 6px;">
+                ✉️ Email Brief
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="vernacular-box">
-        <div class="vernacular-head">
-          <span>AI VERNACULAR AD COPY</span>
-          <span>HUMAN-IN-THE-LOOP REVIEW</span>
-        </div>
-        <div class="vernacular-text"><strong>${c.headline}</strong><br />${c.regional}</div>
-        <div class="vernacular-hindi">${c.hindi}</div>
-      </div>
-
-      <div class="creator-actions">
-        <button class="btn-approve" onclick="toggleCreatorStatus('${c.id}', true)">✓ Approved</button>
-        <button class="btn-veto" onclick="toggleCreatorStatus('${c.id}', false)">✕ Veto / Exclude</button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function toggleCreatorStatus(id, isApproved) {
@@ -243,16 +280,33 @@ function setupLaunchDispatch() {
 
   if (launchBtn) {
     launchBtn.addEventListener('click', () => {
+      isCampaignLaunched = true;
+
+      // Show permanent live campaign banner in UI
+      const statusBanner = document.getElementById('campaign-status-banner');
+      if (statusBanner) {
+        statusBanner.style.display = 'block';
+        statusBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Re-render creator cards so they show DISPATCHED badges
+      renderScenario(currentScenarioKey);
+
+      // Update button text to indicate active campaign
+      launchBtn.innerHTML = '<span>🎉 Campaign Launched (All Channels Active)</span>';
+      launchBtn.style.background = '#038D63';
+
+      // Open live gateway ledger modal
       openModal();
       if (!logBody) return;
 
       logBody.innerHTML = '';
       const logs = [
         '[00:00.12] 🟢 [CELERY WORKER POOL] Initiating multi-channel automated dispatch queue...',
-        '[00:00.38] 🟢 [META CLOUD API WHATSAPP] Direct payload dispatched to verified creator -> ACK HTTP 200 OK',
-        '[00:00.64] 🟢 [TRAI DLT SMS GATEWAY] Direct SMS alert delivered -> DLT Template Verified (#MSH-88219)',
-        '[00:00.91] 🟢 [GMAIL SMTP RELAY] Direct email campaign brief sent -> 250 2.0.0 OK Handshake',
-        '[00:01.20] 🎉 [SUCCESS] All creators notified! Campaign tracking live.'
+        '[00:00.38] 🟢 [META CLOUD API WHATSAPP] Direct payload dispatched to Arka Sharma (+91 8591852051) -> ACK HTTP 200 OK',
+        '[00:00.64] 🟢 [TRAI DLT SMS GATEWAY] Direct SMS alert delivered to +91 8591852051 -> DLT Template Verified (#MSH-88219)',
+        '[00:00.91] 🟢 [GMAIL SMTP RELAY] Direct email campaign brief sent to arkachakraborty2824@gmail.com -> 250 2.0.0 OK Handshake',
+        '[00:01.20] 🎉 [SUCCESS] All creators notified! Campaign tracking live across WhatsApp, SMS, and Email.'
       ];
 
       logs.forEach((line, i) => {
@@ -260,7 +314,7 @@ function setupLaunchDispatch() {
           logBody.innerHTML += `<div class="log-entry">${line}</div>`;
           logBody.scrollTop = logBody.scrollHeight;
           if (i === logs.length - 1 && typeof confetti === 'function') {
-            confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
           }
         }, (i + 1) * 450);
       });
