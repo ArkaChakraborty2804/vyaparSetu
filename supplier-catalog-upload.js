@@ -129,6 +129,85 @@ function setupPresetThumbnails() {
       }
     });
   }
+
+  // Device File Upload Handler
+  const btnDevice = document.getElementById('btn-device-upload');
+  const fileInput = document.getElementById('cat-file-input');
+  if (btnDevice && fileInput) {
+    btnDevice.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const dataUrl = evt.target.result;
+          if (imgUrlInput) imgUrlInput.value = dataUrl;
+          if (imgDisplay && placeholder) {
+            imgDisplay.src = dataUrl;
+            imgDisplay.style.display = 'block';
+            placeholder.style.display = 'none';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  // Google Drive / Cloud Link Import Handler
+  const btnGDrive = document.getElementById('btn-gdrive-import');
+  if (btnGDrive) {
+    btnGDrive.addEventListener('click', () => {
+      const inputLink = prompt('Paste Google Drive public share link or any Image URL:');
+      if (inputLink && inputLink.trim()) {
+        let finalUrl = inputLink.trim();
+        // Extract Google Drive File ID if present
+        const gdriveMatch = finalUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || finalUrl.match(/id=([a-zA-Z0-9_-]+)/);
+        if (gdriveMatch && gdriveMatch[1]) {
+          finalUrl = `https://drive.google.com/uc?export=view&id=${gdriveMatch[1]}`;
+        }
+        if (imgUrlInput) imgUrlInput.value = finalUrl;
+        if (imgDisplay && placeholder) {
+          imgDisplay.src = finalUrl;
+          imgDisplay.style.display = 'block';
+          placeholder.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Drag-and-Drop Zone Handler
+  const dropzone = document.getElementById('dropzone-card');
+  if (dropzone) {
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '#4A1FB8';
+      dropzone.style.background = '#EEECFA';
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '#C3B4ED';
+      dropzone.style.background = '#F9F8FE';
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '#C3B4ED';
+      dropzone.style.background = '#F9F8FE';
+      const file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const dataUrl = evt.target.result;
+          if (imgUrlInput) imgUrlInput.value = dataUrl;
+          if (imgDisplay && placeholder) {
+            imgDisplay.src = dataUrl;
+            imgDisplay.style.display = 'block';
+            placeholder.style.display = 'none';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 }
 
 function setupAddCatalogForm() {
