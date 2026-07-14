@@ -87,7 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
   renderScenario(currentScenarioKey);
   setupLatencyTimer();
   setupLaunchDispatch();
+  setupBackToMeesho();
 });
+
+function setupBackToMeesho() {
+  const backBtn = document.getElementById('btn-back-meesho');
+  if (backBtn) {
+    backBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.opener && !window.opener.closed) {
+        window.opener.focus();
+        window.close();
+      } else {
+        window.location.href = 'supplier-influencer.html';
+      }
+    });
+  }
+}
 
 function setupTabs() {
   const tabBtns = document.querySelectorAll('.nav-tab-btn[data-tab]');
