@@ -512,14 +512,12 @@ function handleBuyerLogout() {
   if (!confirm('Are you sure you want to log out from your Meesho Shopper Account? This will erase all authenticated session data.')) {
     return;
   }
-  localStorage.removeItem('meesho_buyer_jwt');
-  localStorage.removeItem('meesho_buyer_user');
-  localStorage.removeItem('meesho_buyer_oauth_provider');
-  sessionStorage.removeItem('buyer_session_jwt');
+  localStorage.clear();
+  sessionStorage.clear();
   const label = document.getElementById('profile-action-label');
   if (label) label.textContent = 'Profile';
   document.getElementById('buyer-login-modal')?.classList.remove('active');
-  showToast('✓ Successfully logged out from shopper profile.');
+  showToast('✓ Successfully logged out! All session data and local storage items have been completely erased.');
 }
 window.handleBuyerLogout = handleBuyerLogout;
 

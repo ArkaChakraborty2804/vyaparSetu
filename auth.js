@@ -455,21 +455,11 @@ function handleSupplierLogout() {
     console.warn('Error updating database logout state:', err);
   }
 
-  // Erase ALL supplier authenticated details and JWT tokens across local and session storage
-  const keysToRemove = [
-    'meesho_supplier_jwt',
-    'meesho_supplier_user',
-    'meesho_auth_header',
-    'meesho_oauth_access_token',
-    'meesho_oauth_id_token',
-    'meesho_oauth_provider'
-  ];
-  keysToRemove.forEach(key => localStorage.removeItem(key));
+  // Completely clear ALL local storage and session storage data upon logout
+  localStorage.clear();
+  sessionStorage.clear();
 
-  sessionStorage.removeItem('session_jwt');
-  sessionStorage.removeItem('session_oauth_access');
-
-  alert('✓ Successfully logged out! Authenticated session tokens and user details have been erased.');
+  alert('✓ Successfully logged out! All session data, credentials, and local storage items have been completely erased.');
   window.location.href = 'supplier-auth.html?mode=login';
 }
 window.handleSupplierLogout = handleSupplierLogout;
