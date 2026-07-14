@@ -32,10 +32,6 @@
         <span class="pulse-dot"></span>
         <span id="qdrant-latency">Qdrant ANN: 34ms</span>
       </div>
-      <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Toggle Light / Dark Mode">
-        <span id="theme-icon">🌙</span>
-        <span id="theme-label">Dark</span>
-      </button>
       <a href="supplier-influencer.html" id="btn-back-meesho" class="btn-back-hub">
         <span>← Back to Meesho</span>
       </a>
@@ -52,19 +48,19 @@
       <div id="campaign-status-banner" class="status-banner-box" style="display: none;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
           <div style="display: flex; align-items: center; gap: 14px;">
-            <div style="width: 44px; height: 44px; border-radius: 12px; background: #038D63; color: #FFF; font-size: 22px; display: flex; align-items: center; justify-content: center;">🎉</div>
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--neon-green); color: #0B0C10; font-size: 22px; display: flex; align-items: center; justify-content: center;">🎉</div>
             <div>
-              <h2 style="font-size: 18px; font-weight: 800; color: #038D63; margin: 0;">CAMPAIGN LIVE & ACTIVE</h2>
+              <h2 style="font-size: 18px; font-weight: 800; color: var(--neon-green); margin: 0;">CAMPAIGN LIVE & ACTIVE</h2>
               <p style="font-size: 13.5px; color: var(--text-dark); margin: 2px 0 0;">Automated outreach dispatched! Click the WhatsApp, SMS, or Email buttons below to view live sent messages.</p>
             </div>
           </div>
           <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-            <button type="button" onclick="openAllLiveDispatches()" style="background: #25D366; color: #FFF; font-weight: 800; font-size: 12.5px; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+            <button type="button" onclick="openAllLiveDispatches()" style="background: var(--neon-green); color: #0B0C10; font-weight: 800; font-size: 12.5px; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 255, 163, 0.3);">
               <span>💬 Open WhatsApp & ✉️ Gmail Now</span>
               <span>↗</span>
             </button>
-            <span style="background: #FFFFFF; border: 1px solid #038D63; color: #038D63; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">✓ Delivery Rate: 100%</span>
-            <span style="background: #038D63; color: #FFFFFF; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">⚡ Tracking Active</span>
+            <span style="background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">✓ Delivery Rate: 100%</span>
+            <span style="background: var(--neon-green); color: #0B0C10; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 20px;">⚡ Tracking Active</span>
           </div>
         </div>
       </div>
@@ -73,10 +69,10 @@
       <div id="realtime-outreach-center" class="realtime-outreach-box" style="display: none;">
         <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 14px; margin-bottom: 18px;">
           <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: #038D63; box-shadow: 0 0 10px #038D63; display: inline-block;"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); display: inline-block;"></span>
             <h3 style="font-size: 16px; font-weight: 800; color: var(--text-dark); margin: 0;">🟢 LIVE REAL-TIME INFLUENCER MESSAGING FEED</h3>
           </div>
-          <span style="font-size: 12px; font-weight: 700; color: var(--primary-purple); background: #EEECFA; padding: 4px 12px; border-radius: 20px;">Real-Time Webhook Active</span>
+          <span style="font-size: 12px; font-weight: 700; color: var(--primary-magenta); background: rgba(159,32,137,0.2); padding: 4px 12px; border-radius: 20px;">Real-Time Webhook Active</span>
         </div>
 
         <div id="realtime-message-feed" style="display: flex; flex-direction: column; gap: 14px; max-height: 380px; overflow-y: auto; padding-right: 8px;">
@@ -103,11 +99,11 @@
         <div class="intent-card">
           <div class="intent-card-header">
             <h3>💬 Natural Language Seller Intent (Gemini Pro NLP)</h3>
-            <span style="font-size: 11px; background: #EEECFA; color: var(--primary-purple); padding: 4px 10px; border-radius: 12px; font-weight: 800;">STAGE 1 & 2</span>
+            <span style="font-size: 11px; background: rgba(157,116,255,0.2); color: var(--primary-purple); padding: 4px 10px; border-radius: 12px; font-weight: 800;">STAGE 1 & 2</span>
           </div>
           <textarea id="raw-intent-prompt" class="prompt-textarea" placeholder="Speak or type your liquidation goal..."></textarea>
           <div class="prompt-actions">
-            <button class="nav-tab-btn" id="btn-voice-record" style="background: #F3EEFB; color: var(--primary-purple);">
+            <button class="nav-tab-btn" id="btn-voice-record" style="background: rgba(157,116,255,0.1); color: var(--primary-purple);">
               🎙️ Speak Goal (Hindi / Hinglish)
             </button>
             <button class="btn-run-intent" id="btn-run-intent">
@@ -120,7 +116,7 @@
         <div class="intent-card">
           <div class="intent-card-header">
             <h3>🧠 Parsed Intent & Qdrant Vector Search</h3>
-            <span style="font-size: 11px; background: #E8F7F0; color: #038D63; padding: 4px 10px; border-radius: 12px; font-weight: 800;">ANN MATCHED</span>
+            <span style="font-size: 11px; background: rgba(0,255,163,0.15); color: var(--neon-green); padding: 4px 10px; border-radius: 12px; font-weight: 800;">ANN MATCHED</span>
           </div>
           <div class="nlp-tags-grid">
             <div class="nlp-field">
@@ -190,7 +186,7 @@
 
           <div class="nlp-field" style="padding: 24px;">
             <div class="nlp-label" style="font-size: 12.5px;">VyaparSETU AI Broker CAC</div>
-            <div style="font-size: 28px; font-weight: 800; color: #038D63; margin-top: 8px;">₹18 / Order</div>
+            <div style="font-size: 28px; font-weight: 800; color: var(--neon-green); margin-top: 8px;">₹18 / Order</div>
             <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">87.5% reduction in acquisition cost</div>
           </div>
 

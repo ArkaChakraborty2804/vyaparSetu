@@ -5,7 +5,7 @@
 // ==================== GOOGLE OAUTH CONFIGURATION ====================
 // Replace 'YOUR_GOOGLE_CLIENT_ID_HERE' below with your copied Client ID from Google Cloud Console
 // Example: const GOOGLE_CLIENT_ID = '1234567890-abcdefghijklmnop.apps.googleusercontent.com';
-const GOOGLE_CLIENT_ID = '457707652675-u57kuvqnk258ngqbv6p73aofp2gcrcl1.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '1000524671462-vbnri7tfn4ofpdnjabueifjjbmj837m1.apps.googleusercontent.com';
 // ====================================================================
 
 let currentAuthMode = 'signup';
@@ -282,11 +282,6 @@ function completeOAuthLogin(provider, customEmail, customTitle, realAccessToken)
     gstin = '29GOOGLE8819F1Z5';
     authType = 'OAUTH2_GOOGLE_OIDC';
     providerTitle = customTitle || 'Google Verified Account';
-  } else if (provider === 'whatsapp') {
-    identifier = '+91 9876543210 (Verified WhatsApp API)';
-    gstin = '29WHATSAPP9912Z1';
-    authType = 'OAUTH2_WHATSAPP_CLOUD';
-    providerTitle = 'WhatsApp Verified Account';
   }
 
   // Save OAuth verified profile to user database automatically

@@ -456,7 +456,7 @@ function completeBuyerOAuth(provider, customEmail) {
   const exp = iat + 604800; // 7 days
 
   const mobileInput = document.getElementById('buyer-mobile-input')?.value || '9876543210';
-  const identifier = customEmail || (provider.includes('Google') ? 'meesho.shopper@gmail.com' : provider.includes('WhatsApp') ? '+91 9876543210 (WhatsApp Verified)' : mobileInput);
+  const identifier = customEmail || (provider.includes('Google') ? 'meesho.shopper@gmail.com' : mobileInput);
 
   // Persistent Buyer Database lookup & registration
   let buyerDb = {};

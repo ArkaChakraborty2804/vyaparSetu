@@ -203,11 +203,47 @@ function setupScenarios() {
 
   const runBtn = document.getElementById('btn-run-intent');
   if (runBtn) {
-    runBtn.addEventListener('click', () => {
+    runBtn.addEventListener('click', async () => {
       if (typeof confetti === 'function') {
         confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
       }
-      renderScenario(currentScenarioKey);
+      
+      const promptArea = document.getElementById('raw-intent-prompt');
+      const rawPrompt = promptArea ? promptArea.value : '';
+      
+      try {
+        runBtn.innerHTML = '<span>⏳ Parsing (Gemini) & Matching (Qdrant)...</span>';
+        
+        // 1. Parse Intent via FastAPI
+        const intentRes = await fetch('http://localhost:8000/api/parse-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: rawPrompt || SCENARIOS[currentScenarioKey].rawPrompt })
+        });
+        const nlpData = await intentRes.json();
+        
+        document.getElementById('nlp-product').textContent = nlpData.product || 'Unknown';
+        document.getElementById('nlp-region').textContent = nlpData.region || 'Unknown';
+        document.getElementById('nlp-volume').textContent = nlpData.volume || 'Unknown';
+        document.getElementById('nlp-price').textContent = nlpData.price || 'Unknown';
+        
+        // 2. Match Creators via Qdrant/FastAPI
+        const matchRes = await fetch('http://localhost:8000/api/match-creators', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nlpData)
+        });
+        const matchedCreators = await matchRes.json();
+        
+        if (SCENARIOS[currentScenarioKey]) {
+           SCENARIOS[currentScenarioKey].creators = matchedCreators;
+        }
+      } catch (err) {
+        console.error("Backend unreachable, falling back to local simulation", err);
+      } finally {
+        runBtn.innerHTML = '<span>⚡ Parse Intent & Rank Creators</span>';
+        renderScenario(currentScenarioKey);
+      }
     });
   }
 
@@ -338,6 +374,22 @@ function setupLaunchDispatch() {
   if (launchBtn) {
     launchBtn.addEventListener('click', () => {
       isCampaignLaunched = true;
+
+      // 3. Dispatch Async Celery Tasks via FastAPI
+      const scenario = SCENARIOS[currentScenarioKey];
+      if (scenario && scenario.creators) {
+        fetch('http://localhost:8000/api/dispatch-campaign', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            creators: scenario.creators,
+            product: scenario.product || 'Product',
+            price: scenario.price || 'Price'
+          })
+        }).then(r => r.json())
+          .then(data => console.log("Celery Task Dispatched:", data))
+          .catch(err => console.error("Dispatch API Error:", err));
+      }
 
       // Show permanent live campaign banner & real-time messaging feed in UI
       const statusBanner = document.getElementById('campaign-status-banner');
