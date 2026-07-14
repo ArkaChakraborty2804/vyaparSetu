@@ -4,7 +4,6 @@ from pydantic import BaseModel
 from google import genai
 import os
 import json
-from celery_worker import dispatch_outreach_campaign
 from database import SessionLocal, Product
 from qdrant_client import QdrantClient
 
