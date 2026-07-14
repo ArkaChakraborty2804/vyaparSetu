@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meesho Supplier Portal — Authentication & JWT Login | Prototype</title>
+  <link rel="stylesheet" href="supplier-auth.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="auth-header">
+    <a href="supplier.html" class="brand-link">
+      <!-- Exact Meesho Vector Logo -->
+      <svg height="32" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 28V12L18.5 21L25 12V28" stroke="#9F2089" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="32" y="27" fill="#9F2089" font-family="'Inter', sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5px">meesho</text>
+      </svg>
+      <span class="brand-badge">Supplier Panel</span>
+    </a>
+
+    <div class="header-links">
+      <a href="supplier.html">← Back to Supplier Front Page</a>
+      <a href="index.html">Shopping Front Page</a>
+    </div>
+  </header>
+
+  <!-- Main Split Auth Card -->
+  <main class="auth-main">
+    <div class="auth-container">
+      
+      <!-- Left Promotional Composition Panel -->
+      <div class="promo-panel">
+        <div>
+          <span class="promo-tag">INDIA'S LEADING SELLER PLATFORM</span>
+          <h1 class="promo-headline">Grow Your Business 10X on Meesho</h1>
+          <p class="promo-subtext">Join over 14 Lakh+ verified suppliers across India and list your products at 0% commission.</p>
+
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">₹</div>
+              <span>0% Commission Fee across 700+ Categories</span>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">⚡</div>
+              <span>Fast 10-Minute Catalog & Store Setup</span>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">💸</div>
+              <span>Guaranteed Payouts Every 7 Days</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="promo-testimonial">
+          <p>“I started selling sarees on Meesho with zero upfront cost. Within 6 months, our daily orders crossed 400+ shipments with 0% commission!”</p>
+          <div class="promo-testimonial-user">
+            <span>✓ Verified Meesho Supplier</span>
+            <span style="opacity: 0.8;">• Surat, Gujarat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Auth Form Panel -->
+      <div class="form-panel">
+        <!-- Auth Mode Toggle Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tab-signup" type="button">Sign Up (New Supplier)</button>
+          <button class="auth-tab-btn" id="tab-login" type="button">Login (Existing)</button>
+        </div>
+
+        <h2 class="form-title" id="auth-title">Create Supplier Account</h2>
+        <p class="form-subtitle" id="auth-subtitle">Start selling to crores of customers at 0% commission</p>
+
+        <form id="auth-form" autocomplete="off">
+          
+          <div class="form-group">
+            <label class="form-label" for="input-identifier">Mobile Number or Email ID</label>
+            <div class="form-input-wrap">
+              <span class="input-prefix">+91</span>
+              <input 
+                type="text" 
+                id="input-identifier" 
+                class="form-input has-prefix" 
+                placeholder="98765 43210 or supplier@meesho.com" 
+                required 
+                value="9876543210"
+              />
+            </div>
+          </div>
+
+          <div class="form-group" id="field-gstin">
+            <label class="form-label" for="input-gstin">GSTIN or Enrolment ID</label>
+            <input 
+              type="text" 
+              id="input-gstin" 
+              class="form-input" 
+              placeholder="e.g. 29ABCDE1234F1Z5" 
+              value="29ABCDE1234F1Z5"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-password">Account Password</label>
+            <input 
+              type="password" 
+              id="input-password" 
+              class="form-input" 
+              placeholder="Enter secure password" 
+              value="Supplier@Meesho2026"
+              required 
+            />
+          </div>
+
+          <div class="form-group" id="field-confirm-pass">
+            <label class="form-label" for="input-confirm-password">Confirm Password</label>
+            <input 
+              type="password" 
+              id="input-confirm-password" 
+              class="form-input" 
+              placeholder="Re-enter secure password" 
+              value="Supplier@Meesho2026"
+            />
+          </div>
+
+          <div>
+            <span class="role-badge">✓ JWT Authenticated Supplier Session</span>
+          </div>
+
+          <button type="submit" class="btn-submit-auth" id="auth-submit-btn">Generate JWT & Register</button>
+
+          <p class="form-footer-note">
+            By proceeding, you agree to Meesho's <a href="#">Supplier Terms of Service</a> & <a href="#">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive JWT Authentication Modal -->
+  <div class="jwt-modal-overlay" id="jwt-inspector-modal">
+    <div class="jwt-modal">
+      <div class="jwt-modal-header">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>JWT Authentication Successful</span>
+        </h3>
+        <button id="jwt-modal-close" style="color: white; font-size: 24px;">&times;</button>
+      </div>
+
+      <div class="jwt-modal-body">
+        <div class="jwt-success-banner">
+          <div>
+            <h4>✓ HS256 Signed JSON Web Token Generated</h4>
+            <p>Your supplier login details have been securely encrypted into a JWT session token.</p>
+          </div>
+        </div>
+
+        <div class="jwt-section-title">ENCODED JWT TOKEN (HEADER . PAYLOAD . SIGNATURE)</div>
+        <div class="jwt-token-box">
+          <button class="btn-copy-jwt" id="btn-copy-jwt" type="button">Copy JWT</button>
+          <div id="jwt-token-formatted"></div>
+        </div>
+
+        <div class="jwt-section-title">DECODED LOGIN DETAILS (JWT PAYLOAD JSON)</div>
+        <pre class="jwt-payload-card" id="jwt-payload-json"></pre>
+      </div>
+
+      <div class="jwt-modal-footer">
+        <button class="btn-dashboard-enter" id="btn-dashboard-continue">Enter Supplier Dashboard →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

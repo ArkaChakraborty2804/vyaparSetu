@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meesho Supplier Hub — Dashboard | Prototype Replica</title>
+  <link rel="stylesheet" href="supplier-dashboard.css" />
+</head>
+<body>
+
+  <!-- ==================== LEFT DARK SIDEBAR ==================== -->
+  <aside class="dashboard-sidebar">
+    <!-- Store Dropdown Selector -->
+    <div class="store-selector-bar">
+      <div class="store-info">
+        <div class="store-avatar" id="store-avatar-char">F</div>
+        <span class="store-name" id="store-name-display">Frostilicious</span>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+
+    <!-- Quick Action Notices & Support -->
+    <div class="quick-notices-bar">
+      <a href="#" class="notice-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span>Notices</span>
+      </a>
+      <a href="#" class="notice-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        <span>Support</span>
+      </a>
+    </div>
+
+    <!-- Scrollable Sidebar Links -->
+    <nav class="sidebar-nav-scroll">
+      <a href="#" class="nav-link active">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏪</span>
+          <span>Home</span>
+        </div>
+      </a>
+
+      <div class="nav-section-title">Manage Business</div>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📦</span>
+          <span>Orders</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">↩️</span>
+          <span>Returns</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏷️</span>
+          <span>Pricing</span>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📋</span>
+          <span>Claims</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📊</span>
+          <span>Inventory</span>
+        </div>
+      </a>
+
+      <a href="supplier-catalog-upload.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📁</span>
+          <span>Catalog Uploads</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🖼️</span>
+          <span>Image Bulk Upload</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🪄</span>
+          <span>Quality</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">💳</span>
+          <span>Payments</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏢</span>
+          <span>Warehouse</span>
+        </div>
+      </a>
+
+      <div class="nav-section-title">Boost Sales</div>
+
+      <a href="supplier-influencer.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🌟</span>
+          <span>Influencer Marketing</span>
+        </div>
+      </a>
+
+      <a href="#" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🎉</span>
+          <span>Promotions</span>
+        </div>
+        <span class="promo-tag-pill">Opt-in Live v</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div>
+        <div class="sidebar-meesho-logo">meesho</div>
+        <div class="sidebar-meesho-sub">Supplier Hub</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <main class="dashboard-main">
+    
+    <!-- Top Return Header -->
+    <header class="top-hub-header">
+      <div class="hub-breadcrumb">
+        <span>Supplier Hub / <strong>Dashboard Home</strong></span>
+      </div>
+      <div class="hub-actions">
+        <a href="supplier.html" class="btn-hub-switch">← Supplier Front Page</a>
+        <a href="index.html" class="btn-hub-switch">🛒 Shopping Front Page</a>
+      </div>
+    </header>
+
+    <!-- Dashboard Content Pad -->
+    <div class="dashboard-content-pad">
+      
+      <!-- Top Alert Banner: Bank Verification Pending -->
+      <div class="alert-banner">
+        <div class="alert-icon">🕒</div>
+        <div>
+          <div class="alert-title">Bank Verification Pending</div>
+          <div class="alert-text">We will inform you once your account is verified, please continue to upload your catalogs.</div>
+        </div>
+      </div>
+
+      <!-- Welcome Header Card -->
+      <div class="welcome-header-card">
+        <div>
+          <h1 id="hub-welcome-name">Welcome Frostilicious</h1>
+          <p>Let's get your business started in 3 steps</p>
+        </div>
+        <button class="btn-need-help" onclick="alert('Connecting to Meesho Seller Support...')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          <span>Need Help?</span>
+        </button>
+      </div>
+
+      <!-- Main Dashboard 2-Column Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- LEFT CARD: STEPPER & CATALOG UPLOAD -->
+        <section class="catalog-onboard-card">
+          <!-- Stepper Tabs -->
+          <div class="onboard-stepper">
+            <div class="stepper-tab active">
+              <span class="stepper-num">1</span>
+              <span>Upload catalogs to get started</span>
+            </div>
+            <div class="stepper-tab">
+              <span class="stepper-num">2</span>
+              <span>Catalogs go live on Meesho</span>
+            </div>
+            <div class="stepper-tab">
+              <span class="stepper-num">3</span>
+              <span>Get your first order</span>
+            </div>
+          </div>
+
+          <h3 class="upload-section-title" id="stepper-dynamic-header">Choose how you would like to upload your catalog</h3>
+
+          <!-- Upload Options Grid -->
+          <div class="upload-options-grid">
+            
+            <!-- Option 1: Single Catalog -->
+            <div class="upload-card-col">
+              <div class="upload-col-header">Upload Single Catalog</div>
+              
+              <div class="upload-visual-preview">
+                <div class="preview-model-avatar">👩🏽‍💼</div>
+                <div class="preview-play-icon">▶</div>
+                <div class="preview-badge-swatch">Sarees • Kurtis • Ethnic</div>
+              </div>
+
+              <div class="upload-bullet-list">
+                <div class="upload-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Add one catalog at a time</span>
+                </div>
+                <div class="upload-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Excel sheet not required</span>
+                </div>
+              </div>
+
+              <button class="btn-upload-primary" id="btn-add-single" type="button">Add Single Catalog</button>
+            </div>
+
+            <!-- Option 2: Bulk Catalog -->
+            <div class="upload-card-col">
+              <div class="upload-col-header">Upload Bulk Catalog</div>
+              
+              <div class="upload-visual-preview">
+                <div class="preview-model-avatar">👩🏽‍💼</div>
+                <div class="preview-play-icon">▶</div>
+                <div class="preview-badge-swatch" style="background: #1D6F42; color: #FFFFFF;">XLSX Sheet</div>
+              </div>
+
+              <div class="upload-bullet-list">
+                <div class="upload-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Add multiple catalog at a time</span>
+                </div>
+                <div class="upload-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Requires excel sheet</span>
+                </div>
+              </div>
+
+              <button class="btn-upload-outline" id="btn-add-bulk" type="button">Add Catalogs in Bulk</button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- RIGHT STACKED CARDS -->
+        <div class="right-col-stack">
+          
+          <!-- Card 1: Complete your account setup -->
+          <div class="account-setup-card">
+            <h3 class="setup-card-title">Complete your account setup</h3>
+            <p class="setup-card-sub">Add the below information to improve your selling journey</p>
+
+            <div class="setup-action-row" onclick="alert('Password configuration interface opened.')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <span>Set Password</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Learn & Grow On Meesho -->
+          <div class="learn-grow-card">
+            <h3 class="setup-card-title" style="margin-bottom: 12px;">Learn & Grow On Meesho</h3>
+
+            <div class="learn-list">
+              <!-- Item 1 -->
+              <div class="learn-row" onclick="alert('Live Seller Training registration opened!')">
+                <div class="learn-row-left">
+                  <div class="learn-icon">🎧</div>
+                  <div>
+                    <div class="learn-text-head">
+                      <span>Book free live training</span>
+                      <span class="expert-pill">Expert Led</span>
+                    </div>
+                    <div class="learn-text-sub">Learn to operate and grow your business on meesho.</div>
+                  </div>
+                </div>
+                <span class="chevron-right">&gt;</span>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="learn-row" onclick="alert('Catalog preparation tutorial loaded.')">
+                <div class="learn-row-left">
+                  <div class="learn-icon red">▶</div>
+                  <div class="learn-text-head" style="margin-top: 6px;">Prepare catalogs for meesho</div>
+                </div>
+                <span class="chevron-right">&gt;</span>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="learn-row" onclick="alert('0% Commission & Pricing structure guide opened.')">
+                <div class="learn-row-left">
+                  <div class="learn-icon blue">%</div>
+                  <div class="learn-text-head" style="margin-top: 6px;">Pricing & commission</div>
+                </div>
+                <span class="chevron-right">&gt;</span>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="learn-row" onclick="alert('Logistics, Free Doorstep Pickup & Returns FAQ opened.')">
+                <div class="learn-row-left">
+                  <div class="learn-icon">🚚</div>
+                  <div class="learn-text-head" style="margin-top: 6px;">Delivery & Returns</div>
+                </div>
+                <span class="chevron-right">&gt;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== INTERACTIVE SINGLE CATALOG UPLOAD MODAL ==================== -->
+  <div class="catalog-modal-overlay" id="single-catalog-modal">
+    <div class="catalog-modal">
+      <div class="modal-head">
+        <h3>Upload Single Product Catalog</h3>
+        <button id="btn-close-catalog-modal" style="font-size: 22px; color: #888;">&times;</button>
+      </div>
+
+      <form id="single-catalog-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <label for="cat-prod-name">Product Title</label>
+            <input type="text" id="cat-prod-name" placeholder="e.g. Designer Georgette Saree with Blouse" required value="Designer Floral Silk Kurti" />
+          </div>
+
+          <div class="form-row">
+            <label for="cat-prod-price">Selling Price (₹)</label>
+            <input type="number" id="cat-prod-price" placeholder="499" required value="599" min="50" />
+          </div>
+
+          <div class="form-row">
+            <label for="cat-prod-cat">Category</label>
+            <select id="cat-prod-cat">
+              <option value="Women Ethnic">Women Ethnic</option>
+              <option value="Women Western">Women Western</option>
+              <option value="Men">Men Fashion</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+              <option value="Electronics">Electronics</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-cancel-catalog-modal">Cancel</button>
+          <button type="submit" class="btn-submit-catalog">Submit Catalog Live</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="supplier-dashboard.js"></script>
+</body>
+</html>

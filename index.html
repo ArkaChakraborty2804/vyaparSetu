@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Shopping Site for Fashion, Electronics, Home & More | Meesho Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+  <div class="top-notice-bar">
+    <span class="top-notice-badge">Prototype Ready</span>
+    <span>Meesho Front Page Prototype — Ready for testing & integrating new custom features!</span>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" id="home-logo">
+        <!-- Exact Meesho Vector Style Logo -->
+        <svg class="meesho-logo-svg" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="160" height="40" rx="6" fill="transparent"/>
+          <path d="M12 28V12L18.5 21L25 12V28" stroke="#9F2089" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="32" y="27" fill="#9F2089" font-family="'Inter', sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5px">meesho</text>
+        </svg>
+      </a>
+
+      <!-- Search Component -->
+      <div class="search-container">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            class="search-input" 
+            id="search-input" 
+            placeholder="Try Saree, Kurti or Search by Product Code" 
+            autocomplete="off"
+          />
+        </div>
+        <!-- Live Autocomplete Results -->
+        <div class="search-dropdown" id="search-dropdown">
+          <div class="search-dropdown-header">Matching Products</div>
+          <div id="search-dropdown-list"></div>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="supplier.html" class="header-nav-item">Become a Supplier</a>
+        <div class="header-divider"></div>
+        <a href="#investor" class="header-nav-item">Investor Relations</a>
+        <div class="header-divider"></div>
+        <div class="header-nav-item profile-action">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Profile</span>
+        </div>
+        <div class="header-divider"></div>
+        <button class="cart-action" id="cart-drawer-btn" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="cart-badge" id="cart-badge-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Category Navigation Bar -->
+  <nav class="category-nav-bar">
+    <div class="category-list" id="category-nav-list">
+      <!-- Dynamically Rendered by JS -->
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-banner">
+      <div class="hero-content">
+        <h1 class="hero-title">Lowest Prices<br />Best Quality Shopping</h1>
+        <p class="hero-subtitle">Discover over 50 Lakh+ must-have products at unbeatable wholesale prices — From fashion wear to cutting-edge gadgets!</p>
+        
+        <div class="hero-features-box">
+          <div class="hero-feature-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <span>Free Delivery</span>
+          </div>
+          <div class="hero-feature-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1v22"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span>Cash on Delivery</span>
+          </div>
+          <div class="hero-feature-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <span>Easy 7-Day Returns</span>
+          </div>
+        </div>
+
+        <button class="hero-cta-btn" id="hero-shop-btn">
+          <span>Explore Products</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <!-- Hero Visual Composition -->
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80" alt="Saree Fashion" class="hero-card-img" />
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80" alt="Western Wear" class="hero-card-img" style="margin-top: 24px;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Highlights Strip -->
+  <section class="trust-strip">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <h4>100% Quality Inspected</h4>
+          <p>Every supplier vetted & verified</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Lowest Wholesale Price</h4>
+          <p>Direct from factories across India</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Free & Fast Shipping</h4>
+          <p>Zero delivery charges on all orders</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Easy 7-Day Returns</h4>
+          <p>No questions asked doorstep pickup</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Categories Strip -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2 class="section-title">Top Categories to Explore</h2>
+    </div>
+    <div class="featured-grid" id="featured-categories-grid">
+      <!-- Dynamically Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Products For You Section -->
+  <section class="feed-section" id="products-section">
+    <div class="section-header">
+      <h2 class="section-title">Products For You</h2>
+    </div>
+
+    <!-- Toolbar: Filter Tabs & Sorting -->
+    <div class="feed-toolbar">
+      <div class="filter-tabs" id="feed-filter-tabs">
+        <button class="filter-tab-btn active" data-filter="all">All Products</button>
+        <button class="filter-tab-btn" data-filter="women-ethnic">Women Ethnic</button>
+        <button class="filter-tab-btn" data-filter="women-western">Women Western</button>
+        <button class="filter-tab-btn" data-filter="men">Men</button>
+        <button class="filter-tab-btn" data-filter="home-kitchen">Home & Kitchen</button>
+        <button class="filter-tab-btn" data-filter="electronics">Electronics</button>
+        <button class="filter-tab-btn" data-filter="under-299">Under ₹299</button>
+      </div>
+
+      <div class="sort-control">
+        <span class="sort-label">Sort by:</span>
+        <select class="sort-select" id="sort-select">
+          <option value="relevance">Relevance</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+          <option value="discount">Highest Discount</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid Feed -->
+    <div class="products-grid" id="products-grid">
+      <!-- Dynamically Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal-overlay" id="quick-view-modal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-image-box">
+        <img src="" alt="" class="modal-image" id="modal-img" />
+      </div>
+      <div class="modal-details">
+        <div class="modal-category-tag" id="modal-cat">Women Ethnic</div>
+        <h3 class="modal-title" id="modal-title">Product Title</h3>
+        <div class="modal-supplier" id="modal-supplier">Sold by: Verified Supplier</div>
+        
+        <div class="modal-price-row">
+          <span class="modal-current-price" id="modal-price">₹299</span>
+          <span class="original-price" id="modal-orig-price">₹999</span>
+          <span class="discount-tag" id="modal-discount">70% off</span>
+        </div>
+
+        <p class="modal-desc" id="modal-desc">Description of the product goes here.</p>
+
+        <div class="modal-perks">
+          <div class="modal-perk-item">
+            <span>✓</span> Free Delivery
+          </div>
+          <div class="modal-perk-item">
+            <span>✓</span> COD Available
+          </div>
+          <div class="modal-perk-item">
+            <span>✓</span> 7-Day Returns
+          </div>
+        </div>
+
+        <div class="modal-cta-group">
+          <button class="btn-primary" id="modal-add-cart-btn">
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Out Drawer -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>Shopping Cart (<span id="cart-header-count">0</span>)</h3>
+        <button id="cart-drawer-close" style="font-size: 24px;">&times;</button>
+      </div>
+      <div class="cart-body" id="cart-items-list">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-summary-row">
+          <span>Total Amount</span>
+          <span id="cart-total-amount">₹0</span>
+        </div>
+        <button class="btn-checkout" id="cart-checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div class="toast-container" id="toast-container">
+    <span id="toast-msg">Item added to cart!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Shop Non-Stop on Meesho</h3>
+        <p>Trusted by more than 10 Crore Indians. Cash on Delivery | Free Delivery</p>
+      </div>
+      <div class="footer-col">
+        <h4>Careers & About</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Tech Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help & Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Shipping & Delivery</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">Trust & Safety</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Reach out to us</h4>
+        <ul class="footer-links">
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Fashnear Technologies Private Limited / Meesho Prototype. All Rights Reserved.</span>
+      <span>Design Replica for Prototype Testing</span>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

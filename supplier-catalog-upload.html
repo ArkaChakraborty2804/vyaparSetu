@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meesho Supplier Hub — Catalog Upload & Database | Prototype</title>
+  <link rel="stylesheet" href="supplier-catalog-upload.css" />
+</head>
+<body>
+
+  <!-- ==================== LEFT DARK SIDEBAR ==================== -->
+  <aside class="dashboard-sidebar">
+    <!-- Store Dropdown Selector -->
+    <div class="store-selector-bar">
+      <div class="store-info">
+        <div class="store-avatar">F</div>
+        <span class="store-name">Frostilicious</span>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+
+    <!-- Quick Action Notices & Support -->
+    <div class="quick-notices-bar">
+      <a href="#" class="notice-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span>Notices</span>
+      </a>
+      <a href="#" class="notice-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        <span>Support</span>
+      </a>
+    </div>
+
+    <!-- Scrollable Sidebar Links -->
+    <nav class="sidebar-nav-scroll">
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏪</span>
+          <span>Home</span>
+        </div>
+      </a>
+
+      <div class="nav-section-title">Manage Business</div>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📦</span>
+          <span>Orders</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">↩️</span>
+          <span>Returns</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏷️</span>
+          <span>Pricing</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📋</span>
+          <span>Claims</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">📊</span>
+          <span>Inventory</span>
+        </div>
+      </a>
+
+      <!-- ACTIVE CATALOG UPLOADS -->
+      <a href="supplier-catalog-upload.html" class="nav-link active">
+        <div class="nav-link-content">
+          <span class="nav-icon">📁</span>
+          <span>Catalog Uploads</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🖼️</span>
+          <span>Image Bulk Upload</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🪄</span>
+          <span>Quality</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">💳</span>
+          <span>Payments</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🏢</span>
+          <span>Warehouse</span>
+        </div>
+      </a>
+
+      <div class="nav-section-title">Boost Sales</div>
+
+      <a href="supplier-influencer.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🌟</span>
+          <span>Influencer Marketing</span>
+        </div>
+      </a>
+
+      <a href="supplier-dashboard.html" class="nav-link">
+        <div class="nav-link-content">
+          <span class="nav-icon">🎉</span>
+          <span>Promotions</span>
+        </div>
+        <span class="promo-tag-pill">Opt-in Live v</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div>
+        <div class="sidebar-meesho-logo">meesho</div>
+        <div class="sidebar-meesho-sub">Supplier Hub</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <main class="dashboard-main">
+    
+    <!-- Top Hub Header -->
+    <header class="top-hub-header">
+      <div class="hub-breadcrumb">
+        <span>Supplier Hub / Manage Business / <strong>Catalog Database & Uploads</strong></span>
+      </div>
+      <div class="hub-actions">
+        <a href="supplier-dashboard.html" class="btn-hub-switch">← Back to Dashboard</a>
+        <a href="supplier-influencer.html" class="btn-hub-switch">🌟 Influencer Marketing</a>
+      </div>
+    </header>
+
+    <!-- Content Pad -->
+    <div class="catalog-content-pad">
+      
+      <!-- Top Tab Switcher Bar -->
+      <div class="catalog-tabs-bar">
+        <div class="catalog-tab-buttons">
+          <button class="tab-btn active" data-target="view-add-catalog" type="button">
+            <span>➕ Add New Catalog</span>
+          </button>
+          <button class="tab-btn" data-target="view-my-catalogs" type="button">
+            <span>📦 My Catalogs</span>
+            <span class="tab-badge" id="my-catalogs-badge">3</span>
+          </button>
+        </div>
+
+        <div class="catalog-search-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" placeholder="Search SKU, Product Title..." oninput="alert('Live Catalog Search index ready.')" />
+        </div>
+      </div>
+
+      <!-- ==================== TAB 1: ADD NEW CATALOG FORM ==================== -->
+      <div class="tab-view active" id="view-add-catalog">
+        <div class="add-catalog-card">
+          <h2>Upload Product Catalog & Enroll in Marketing</h2>
+          <p class="form-subtitle">Add product details and photos. Enable Influencer Marketing to let 50,000+ Meesho Creators promote this item.</p>
+
+          <form id="new-catalog-form">
+            <div class="form-grid-2col">
+              
+              <!-- Left Form Fields -->
+              <div class="form-left-fields">
+                <div class="field-group">
+                  <label for="cat-title">Product Title *</label>
+                  <input type="text" id="cat-title" required placeholder="e.g. Designer Embroidered Georgette Anarkali Gown" value="Handwoven Banarasi Silk Kurta Set" />
+                </div>
+
+                <div class="form-row-2">
+                  <div class="field-group">
+                    <label for="cat-sku">SKU ID *</label>
+                    <input type="text" id="cat-sku" required placeholder="e.g. MSH-KRTI-501" value="MSH-SLK-408" />
+                  </div>
+                  <div class="field-group">
+                    <label for="cat-category">Category *</label>
+                    <select id="cat-category">
+                      <option value="Women Ethnic">Women Ethnic</option>
+                      <option value="Women Western">Women Western</option>
+                      <option value="Men Fashion">Men Fashion</option>
+                      <option value="Kids & Baby">Kids & Baby</option>
+                      <option value="Home & Kitchen">Home & Kitchen</option>
+                      <option value="Electronics">Electronics</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="field-group">
+                    <label for="cat-price">Selling Price (₹) *</label>
+                    <input type="number" id="cat-price" required placeholder="499" value="799" min="50" />
+                  </div>
+                  <div class="field-group">
+                    <label for="cat-mrp">MRP (₹)</label>
+                    <input type="number" id="cat-mrp" placeholder="1499" value="1899" />
+                  </div>
+                </div>
+
+                <div class="field-group">
+                  <label for="cat-stock">Initial Stock Quantity *</label>
+                  <input type="number" id="cat-stock" required placeholder="100" value="75" />
+                </div>
+
+                <div class="field-group">
+                  <label for="cat-img-url">Product Photo URL *</label>
+                  <input type="url" id="cat-img-url" required placeholder="https://..." value="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=300&q=80" />
+                </div>
+
+                <!-- Special Box: Send to Influencers for Marketing -->
+                <div class="influencer-optin-box">
+                  <div class="inf-optin-head">
+                    <div class="inf-optin-title">
+                      <span>🌟</span>
+                      <span>Send to Influencers for Marketing (50K+ Creators)</span>
+                    </div>
+                    <label class="inf-switch">
+                      <input type="checkbox" id="inf-enroll-toggle" checked />
+                      <span class="slider-toggle"></span>
+                    </label>
+                  </div>
+                  <p style="font-size: 12.5px; color: #6E5A1C; line-height: 1.4;">
+                    When enabled, this product is immediately sent to 50,000+ Meesho creators to create video reels on Meesho App & Instagram. Only pay commission on successfully delivered orders!
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right Image Preview Block -->
+              <div class="form-right-visual">
+                <label style="font-size: 13.5px; font-weight: 700; color: var(--text-dark);">Product Photo Preview</label>
+                
+                <div class="img-preview-card">
+                  <img id="preview-img-display" class="preview-img-display" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=300&q=80" style="display: block;" alt="Preview" />
+                  
+                  <div id="preview-placeholder" class="preview-placeholder" style="display: none;">
+                    <div class="placeholder-icon">📸</div>
+                    <div style="font-size: 14px; font-weight: 700;">Upload or Select Image</div>
+                    <div style="font-size: 12px; color: #8B8BA3;">Paste URL or choose a preset sample below</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-align: center;">Or Click Sample Product Presets:</div>
+                  <div class="preset-thumbs-row">
+                    <!-- Preset 1 -->
+                    <div class="preset-thumb active" data-img="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=300&q=80">
+                      <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=300&q=80" alt="Kurti" />
+                    </div>
+                    <!-- Preset 2 -->
+                    <div class="preset-thumb" data-img="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80">
+                      <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80" alt="Saree" />
+                    </div>
+                    <!-- Preset 3 -->
+                    <div class="preset-thumb" data-img="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=300&q=80">
+                      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=300&q=80" alt="Watch" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-submit-row">
+              <button type="button" class="btn-cancel-form" onclick="alert('Form reset')">Reset Form</button>
+              <button type="submit" class="btn-publish-catalog">Publish Catalog & Save to Database →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ==================== TAB 2: MY CATALOGS DATABASE VIEW ==================== -->
+      <div class="tab-view" id="view-my-catalogs">
+        <div class="catalogs-table-card">
+          <div style="padding: 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h3 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700;">My Catalogs Database</h3>
+              <p style="font-size: 13.5px; color: #58596B;">Manage stored catalogs and toggle real-time Influencer Marketing enrollment.</p>
+            </div>
+            <button class="btn-hub-switch" onclick="document.querySelector('.tab-btn[data-target=\'view-add-catalog\']').click()">+ Add Another Catalog</button>
+          </div>
+
+          <table class="catalog-data-table">
+            <thead>
+              <tr>
+                <th>Product Information</th>
+                <th>Category</th>
+                <th>Price & MRP</th>
+                <th>Stock Status</th>
+                <th>Influencer Marketing Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="my-catalogs-tbody">
+              <!-- Dynamically populated from localStorage database -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="supplier-catalog-upload.js"></script>
+</body>
+</html>
