@@ -3,6 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  window.name = 'meesho_supplier_hub_main';
   loadStoreProfile();
   setupCatalogSelectionModal();
   setupESignatureAlert();

@@ -117,7 +117,17 @@ function setupBackToMeesho() {
     backBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (window.opener && !window.opener.closed) {
-        window.opener.focus();
+        try {
+          window.opener.focus();
+        } catch (err) {}
+      }
+      // Target the named Meesho tab 'meesho_supplier_hub_main' to bring it right to the foreground
+      // without closing the ongoing VyaparSETU tab. If not found or blocked, fall back gracefully.
+      const meeshoWin = window.open('supplier-influencer.html', 'meesho_supplier_hub_main');
+      if (meeshoWin) {
+        try {
+          meeshoWin.focus();
+        } catch (err) {}
       } else {
         window.location.href = 'supplier-influencer.html';
       }
