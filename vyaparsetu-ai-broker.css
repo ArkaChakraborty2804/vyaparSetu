@@ -684,6 +684,7 @@ body.dark-theme .btn-back-hub:hover {
 
 body.dark-theme .creator-card,
 body.dark-theme .scenario-selector,
+body.dark-theme .scenario-selector-bar,
 body.dark-theme .economics-card,
 body.dark-theme .terminal-box {
   background: var(--bg-card);
@@ -751,6 +752,7 @@ body.dark-theme .nlp-field,
 body.dark-theme .human-review-box,
 body.dark-theme .status-banner-box,
 body.dark-theme .realtime-outreach-box,
+body.dark-theme .scenario-selector-bar,
 body.dark-theme .creator-card,
 body.dark-theme .message-bubble-card {
   background: #181A26 !important;
