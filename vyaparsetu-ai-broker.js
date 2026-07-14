@@ -139,7 +139,9 @@ function setupScenarios() {
       currentScenarioKey = pill.dataset.scenario;
       isCampaignLaunched = false;
       const statusBanner = document.getElementById('campaign-status-banner');
+      const realtimeCenter = document.getElementById('realtime-outreach-center');
       if (statusBanner) statusBanner.style.display = 'none';
+      if (realtimeCenter) realtimeCenter.style.display = 'none';
       renderScenario(currentScenarioKey);
     });
   });
@@ -281,11 +283,17 @@ function setupLaunchDispatch() {
     launchBtn.addEventListener('click', () => {
       isCampaignLaunched = true;
 
-      // Show permanent live campaign banner in UI
+      // Show permanent live campaign banner & real-time messaging feed in UI
       const statusBanner = document.getElementById('campaign-status-banner');
+      const realtimeCenter = document.getElementById('realtime-outreach-center');
+      const realtimeFeed = document.getElementById('realtime-message-feed');
+
       if (statusBanner) {
         statusBanner.style.display = 'block';
         statusBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (realtimeCenter) {
+        realtimeCenter.style.display = 'block';
       }
 
       // Re-render creator cards so they show DISPATCHED badges
@@ -317,6 +325,71 @@ function setupLaunchDispatch() {
           }
         }, (i + 1) * 450);
       });
+
+      // Populate Live Real-Time Messaging Feed Stream
+      if (realtimeFeed) {
+        realtimeFeed.innerHTML = '';
+        const streamMessages = [
+          {
+            delay: 400,
+            sender: 'OUTGOING • WhatsApp Cloud API',
+            meta: 'To: Arka Sharma (+91 8591852051) • Status: Delivered & Read ✓✓',
+            color: '#E8F7F0',
+            borderColor: '#038D63',
+            text: '🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।',
+            waLink: 'https://wa.me/918591852051?text=' + encodeURIComponent('🔥 अर्का शर्मा रेकमेंडेशन: 100% कॉटन डबल बेडशीट मात्र ₹349 में! फ्री होम डिलीवरी और COD उपलब्ध।')
+          },
+          {
+            delay: 1100,
+            sender: 'OUTGOING • TRAI DLT SMS Gateway',
+            meta: 'To: Pooja Tiwari (+91 9838112044) • Status: Delivered ✓✓ (#MSH-88219)',
+            color: '#EEECFA',
+            borderColor: '#4A1FB8',
+            text: 'Meesho Sponsorship Brief: 100% pucca rang Jaipuri cotton bedsheet at factory rate ₹349. Campaign referral active.',
+            waLink: 'sms:+919838112044?body=' + encodeURIComponent('Meesho Sponsorship Brief: 100% pucca rang Jaipuri cotton bedsheet at factory rate ₹349.')
+          },
+          {
+            delay: 2400,
+            sender: 'INCOMING REPLY • Arka Sharma (Verified Creator)',
+            meta: 'Just now • WhatsApp Chat Reply 💬',
+            color: '#FFFFFF',
+            borderColor: '#9F2089',
+            text: 'Hey Meesho Team! Received the brief & sample link for Jaipuri Bedsheets (₹349). Campaign reel goes live tomorrow at 6 PM! 🚀',
+            waLink: 'https://wa.me/918591852051?text=Thanks%20Arka!'
+          },
+          {
+            delay: 3800,
+            sender: 'INCOMING REPLY • Pooja Tiwari (Verified Creator)',
+            meta: 'Just now • WhatsApp Chat Reply 💬',
+            color: '#FFFFFF',
+            borderColor: '#038D63',
+            text: 'Namaste Bhauji! Link mil gaya hai. WhatsApp story aur Meesho affiliate link add kar rahi hoon right now! ✨',
+            waLink: 'https://wa.me/919838112044?text=Thanks%20Pooja!'
+          }
+        ];
+
+        streamMessages.forEach(item => {
+          setTimeout(() => {
+            const bubble = document.createElement('div');
+            bubble.style.background = item.color;
+            bubble.style.borderLeft = `4px solid ${item.borderColor}`;
+            bubble.style.padding = '14px 18px';
+            bubble.style.borderRadius = '10px';
+            bubble.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+            bubble.innerHTML = `
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                <span style="font-size: 13px; font-weight: 800; color: #1E1F2C;">${item.sender}</span>
+                <span style="font-size: 11.5px; color: #58596B;">${item.meta}</span>
+              </div>
+              <p style="font-size: 14px; color: #1E1F2C; margin: 0 0 10px;">${item.text}</p>
+              <a href="${item.waLink}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #038D63; text-decoration: none; background: #FFF; border: 1px solid #038D63; padding: 5px 12px; border-radius: 6px;">
+                <span>↗ Open Real Chat / Message</span>
+              </a>
+            `;
+            realtimeFeed.appendChild(bubble);
+          }, item.delay);
+        });
+      }
     });
   }
 }
