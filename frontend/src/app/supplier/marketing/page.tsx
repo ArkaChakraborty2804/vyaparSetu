@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import "./supplier.css";
+import "./supplier.scss";
 import Link from "next/link";
 
 export default function SupplierMarketingHub() {
   return (
-    <div className="marketing-hub">
+    <div className="scope-supplier-marketing"><div className="marketing-hub">
       <header className="main-header" style={{borderBottom: '1px solid #EAEAF2', background: '#FFF'}}>
         <div className="header-container" style={{display: 'flex', justifyContent: 'space-between', padding: '16px 24px'}}>
           <Link href="/" style={{textDecoration: 'none'}}>
@@ -30,5 +30,6 @@ export default function SupplierMarketingHub() {
         </Link>
       </section>
     </div>
+      </div>
   );
 }

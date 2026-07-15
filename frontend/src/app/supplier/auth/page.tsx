@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import "./auth.css";
+import "./auth.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { GoogleLogin } from "@react-oauth/google";
@@ -47,7 +47,7 @@ export default function SupplierAuth() {
   };
 
   return (
-    <div className="auth-layout" style={{display: 'flex', minHeight: '100vh', background: '#F8F8FA'}}>
+    <div className="scope-supplier-auth"><div className="auth-layout" style={{display: 'flex', minHeight: '100vh', background: '#F8F8FA'}}>
       <div className="auth-form-container" style={{margin: 'auto', background: '#FFF', padding: '40px', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', width: '100%', maxWidth: '440px'}}>
         <div style={{textAlign: 'center', marginBottom: '30px'}}>
           <Link href="/">
@@ -102,5 +102,6 @@ export default function SupplierAuth() {
         </form>
       </div>
     </div>
+      </div>
   );
 }

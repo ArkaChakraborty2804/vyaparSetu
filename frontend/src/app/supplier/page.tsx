@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import "./supplier.css";
+import "./supplier.scss";
 
 export default function SupplierLandingPage() {
   const [sellingPrice, setSellingPrice] = useState<number>(500);
@@ -28,7 +28,7 @@ export default function SupplierLandingPage() {
   }, [sellingPrice, costPrice]);
 
   return (
-    <div>
+    <div className="scope-supplier-main"><div>
       {/* Top Notice Bar */}
       <div className="supplier-notice-bar">
         <span>Meesho Supplier Center — Prototype Replica</span>
@@ -284,5 +284,6 @@ export default function SupplierLandingPage() {
         </div>
       </footer>
     </div>
+      </div>
   );
 }

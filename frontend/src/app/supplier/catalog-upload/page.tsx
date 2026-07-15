@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import "./upload.css";
+import "./upload.scss";
 
 interface CatalogItem {
   id: string;
@@ -138,7 +138,7 @@ export default function CatalogUpload() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="scope-supplier-catalog-upload"><div style={{ display: 'flex', minHeight: '100vh' }}>
       {/* ==================== LEFT DARK SIDEBAR ==================== */}
       <aside className="dashboard-sidebar">
         {/* Store Dropdown Selector */}
@@ -457,5 +457,6 @@ export default function CatalogUpload() {
         </div>
       </main>
     </div>
+      </div>
   );
 }

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
 
-:root {
+.scope-supplier-catalog-upload {
+
+.scope-supplier-catalog-upload {
   --sidebar-bg: #1B1D29;
   --sidebar-hover: #262838;
   --sidebar-active: #2C2E40;
@@ -755,4 +757,6 @@ input:checked + .slider-toggle:before {
   .form-grid-2col {
     grid-template-columns: 1fr;
   }
+}
+
 }

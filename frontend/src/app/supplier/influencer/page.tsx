@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import "./influencer.css";
+import "./influencer.scss";
 
 export default function SupplierInfluencerMarketing() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function SupplierInfluencerMarketing() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#F8F8F9' }}>
+    <div className="scope-supplier-influencer"><div style={{ display: 'flex', minHeight: '100vh', background: '#F8F8F9' }}>
       {/* ==================== LEFT DARK SIDEBAR ==================== */}
       <aside className="dashboard-sidebar">
         {/* Store Dropdown Selector */}
@@ -280,5 +280,6 @@ export default function SupplierInfluencerMarketing() {
         </div>
       </main>
     </div>
+      </div>
   );
 }
